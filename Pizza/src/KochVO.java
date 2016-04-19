@@ -11,11 +11,13 @@ public class KochVO {
 		setFarbeSchuerze(farbeSchuerze);
 	}
 	
-	public KochVO(){		
+	public KochVO(){
+		this("Maserati","Bruno", Color.BLACK);
 	}
 	
 	public void setNachname(String nachname){
-		this.nachname = nachname;
+		if (nachname != "")
+			this.nachname = nachname;
 	}
 	
 	public String getNachname(){
@@ -23,7 +25,8 @@ public class KochVO {
 	}
 	
 	public void setVorname(String vorname){
-		this.vorname = vorname;
+		if (vorname != "")
+			this.vorname = vorname;
 	}
 	
 	public String getVorname(){
@@ -31,7 +34,8 @@ public class KochVO {
 	} 
 	
 	public void setFarbeSchuerze(Color farbeSchuerze){
-		this.farbeSchuerze = farbeSchuerze;
+		if (farbeSchuerze != null)
+			this.farbeSchuerze = farbeSchuerze;
 	}
 	
 	public Color getFarbeSchuerze(){

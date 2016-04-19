@@ -3,12 +3,12 @@ public class PizzaVO {
 	private String name;
 	private float preis;
 	private String[] zutaten;
-	
-	public PizzaVO(){
-		
+
+	public PizzaVO() {
+		this("Pizza", 5.00f, new String[] { "", "" });
 	}
-	
-	public PizzaVO(String name, float preis, String[] zutaten){
+
+	public PizzaVO(String name, float preis, String[] zutaten) {
 		setName(name);
 		setPreis(preis);
 		setZutaten(zutaten);
@@ -19,7 +19,8 @@ public class PizzaVO {
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		if (name != "")
+			this.name = name;
 	}
 
 	public float getPreis() {
@@ -38,5 +39,5 @@ public class PizzaVO {
 	public void setZutaten(String[] zutaten) {
 		this.zutaten = zutaten;
 	}
-	
+
 }

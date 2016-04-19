@@ -12,6 +12,7 @@ public class PizzaTest {
 		
 		KochVO einKoch = new KochVO("Dampf", "Voll", Color.BLACK);
 		System.out.println(einKoch.getVorname() + einKoch.getNachname());
+	
 		
 		
 		
