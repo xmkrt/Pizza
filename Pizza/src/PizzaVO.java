@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 public class PizzaVO {
 	private String name;
@@ -5,13 +6,42 @@ public class PizzaVO {
 	private String[] zutaten;
 
 	public PizzaVO() {
-		this("Pizza", 5.00f, new String[] { "", "" });
+		this(null, 0.0F, null);
 	}
 
 	public PizzaVO(String name, float preis, String[] zutaten) {
 		setName(name);
 		setPreis(preis);
 		setZutaten(zutaten);
+	}
+	
+	public Object clone(){
+		PizzaVO neuePizza = new PizzaVO(this.name, this.preis, this.zutaten);
+		return neuePizza;		
+	}
+	
+	public int hashCode() {
+		final int hashMultiplier = 31;
+		int hc = 1;
+		hc = hashMultiplier * hc + ((name == null) ? 0 : name.hashCode());
+		hc = hashMultiplier * hc + Float.floatToIntBits(preis);
+		hc = hashMultiplier * hc + Arrays.hashCode(zutaten);
+		return hc;
+	}
+
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PizzaVO check;
+		check = (PizzaVO)obj;
+		if(this.name.equals(check.getName()) && this.preis == check.getPreis() && this.zutaten.equals(check.getZutaten()))
+			return true;
+		else 
+			return false;
 	}
 
 	public String getName() {
@@ -39,5 +69,10 @@ public class PizzaVO {
 	public void setZutaten(String[] zutaten) {
 		this.zutaten = zutaten;
 	}
+
+	public String toString() {
+		return "PizzaVO [Name: " + name + ", Preis: " + preis + " Zutaten:" + Arrays.toString(zutaten);
+	}
+	
 
 }

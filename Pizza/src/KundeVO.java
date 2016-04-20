@@ -12,7 +12,33 @@ public class KundeVO {
 	private short alter;
 
 	public KundeVO() {
-		this("", "", "", LocalDate.now());
+		this(null, null, null, null);
+	}
+	
+	public int hashCode() {
+		final int hashMultiplier = 47;
+		int hc = 1;
+		hc = hashMultiplier * hc + alter;
+		hc = hashMultiplier * hc + ((geburtsdatum == null) ? 0 : geburtsdatum.hashCode());
+		hc = hashMultiplier * hc + ((geschlecht == null) ? 0 : geschlecht.hashCode());
+		hc = hashMultiplier * hc + ((nachname == null) ? 0 : nachname.hashCode());
+		hc = hashMultiplier * hc + ((vorname == null) ? 0 : vorname.hashCode());
+		return hc;
+	}
+
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		KundeVO check;
+		check = (KundeVO)obj;
+		if(this.id == check.getId())			
+			return true;
+		else 
+			return false;
 	}
 
 	public KundeVO(String nachname, String vorname, String geschlecht, LocalDate geburtsdatum) {
@@ -25,22 +51,18 @@ public class KundeVO {
 	}
 
 	public KundeVO(String nachname, String vorname, String geschlecht) {
-		this(nachname, vorname, geschlecht, LocalDate.now());
+		this(nachname, vorname, geschlecht, null);
 	}
 
 	public KundeVO(String nachname, String vorname) {
-		this(nachname, vorname, "männlich", LocalDate.now());
+		this(nachname, vorname, null, null);
 	}
 
 	public void setGeburtsdatum(LocalDate geburtsdatum) {
 		if (berechneAlter(geburtsdatum) > 17)
 			this.geburtsdatum = geburtsdatum;
 		else
-			this.geburtsdatum = LocalDate.now();
-	}
-
-	public LocalDate getGeburtsdatum() {
-		return geburtsdatum;
+			this.geburtsdatum = null;
 	}
 
 	public String getNachname() {
@@ -57,7 +79,7 @@ public class KundeVO {
 	}
 
 	public void setVorname(String vorname) {
-		if (vorname != "")
+		if (vorname != "" && vorname != null)
 			this.vorname = vorname;
 	}
 
@@ -70,7 +92,7 @@ public class KundeVO {
 			this.geschlecht = geschlecht;
 	}
 
-	public String getGeburtsdatumStr() {
+	private String getGeburtsdatumStr() {
 		return geburtsdatum.format(DateTimeFormatter.ofPattern("dd.MMM.yyyy"));
 	}
 
@@ -87,5 +109,13 @@ public class KundeVO {
 		zeit.getYears();
 		return (short) zeit.getYears();
 	}
+	
+	public String toString(){
+		return "ID: " + id + " Name: " + vorname  + " " + nachname 
+				+ "\n" + getGeburtsdatumStr() + " Alter: " + alter
+				+ " " + geschlecht;
+	}
+	
+	
 
 }

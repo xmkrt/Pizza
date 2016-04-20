@@ -12,7 +12,7 @@ public class KochVO {
 	}
 	
 	public KochVO(){
-		this("Maserati","Bruno", Color.BLACK);
+		this(null,null, null);
 	}
 	
 	public void setNachname(String nachname){
