@@ -58,7 +58,7 @@ public class PizzaVO {
 	}
 
 	public void setPreis(float preis) {
-		if (preis >= 0)
+		if (preis >= 0.0F)
 			this.preis = preis;
 	}
 
