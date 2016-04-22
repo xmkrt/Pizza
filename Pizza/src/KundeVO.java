@@ -11,6 +11,18 @@ public class KundeVO {
 	private LocalDate geburtsdatum;
 	private short alter;
 	
+	public KundeVO() {
+		this(null, null, null, null);
+	}
+	
+	public KundeVO(String nachname, String vorname) {
+		this(nachname, vorname, null, null);
+	}
+	
+	public KundeVO(String nachname, String vorname, String geschlecht) {
+		this(nachname, vorname, geschlecht, null);
+	}
+	
 	public KundeVO(String nachname, String vorname, String geschlecht, LocalDate geburtsdatum) {
 		id = naechstID;
 		naechstID++;
@@ -18,19 +30,7 @@ public class KundeVO {
 		setVorname(vorname);
 		setGeschlecht(geschlecht);
 		setGeburtsdatum(geburtsdatum);
-	}
-	
-	public KundeVO(String nachname, String vorname, String geschlecht) {
-		this(nachname, vorname, geschlecht, null);
-	}
-
-	public KundeVO(String nachname, String vorname) {
-		this(nachname, vorname, null, null);
-	}
-	
-	public KundeVO() {
-		this(null, null, null, null);
-	}
+	}	
 	
 	public int hashCode() {
 		final int hashMultiplier = 47;
@@ -59,10 +59,14 @@ public class KundeVO {
 	}
 
 	public void setGeburtsdatum(LocalDate geburtsdatum) {
-		if (berechneAlter(geburtsdatum) > 17)
+		short alter = berechneAlter(geburtsdatum);
+		if (alter > 17){
 			this.geburtsdatum = geburtsdatum;
+			this.alter = alter;
+		}
 		else
 			this.geburtsdatum = null;
+			alter = 0;
 	}
 
 	public String getNachname() {
@@ -106,7 +110,6 @@ public class KundeVO {
 
 	public short berechneAlter(LocalDate geburtsdatum) {
 		Period zeit = Period.between(geburtsdatum, LocalDate.now());
-		zeit.getYears();
 		return (short) zeit.getYears();
 	}
 	

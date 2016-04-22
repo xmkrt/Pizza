@@ -4,16 +4,17 @@ public class PizzaVO {
 	private String name;
 	private float preis;
 	private String[] zutaten;
-
-	public PizzaVO(String name, float preis, String[] zutaten) {
-		setName(name);
-		setPreis(preis);
-		setZutaten(zutaten);
-	}
 	
 	public PizzaVO() {
 		this(null, 0.0F, null);
 	}
+	
+	
+	public PizzaVO(String name, float preis, String[] zutaten) {
+		setName(name);
+		setPreis(preis);
+		setZutaten(zutaten);
+	}	
 	
 	public Object clone(){
 		PizzaVO neuePizza = new PizzaVO(this.name, this.preis, this.zutaten);
