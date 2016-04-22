@@ -10,7 +10,24 @@ public class KundeVO {
 	private String geschlecht;
 	private LocalDate geburtsdatum;
 	private short alter;
+	
+	public KundeVO(String nachname, String vorname, String geschlecht, LocalDate geburtsdatum) {
+		id = naechstID;
+		naechstID++;
+		setNachname(nachname);
+		setVorname(vorname);
+		setGeschlecht(geschlecht);
+		setGeburtsdatum(geburtsdatum);
+	}
+	
+	public KundeVO(String nachname, String vorname, String geschlecht) {
+		this(nachname, vorname, geschlecht, null);
+	}
 
+	public KundeVO(String nachname, String vorname) {
+		this(nachname, vorname, null, null);
+	}
+	
 	public KundeVO() {
 		this(null, null, null, null);
 	}
@@ -41,23 +58,6 @@ public class KundeVO {
 			return false;
 	}
 
-	public KundeVO(String nachname, String vorname, String geschlecht, LocalDate geburtsdatum) {
-		id = naechstID;
-		naechstID++;
-		setNachname(nachname);
-		setVorname(vorname);
-		setGeschlecht(geschlecht);
-		setGeburtsdatum(geburtsdatum);
-	}
-
-	public KundeVO(String nachname, String vorname, String geschlecht) {
-		this(nachname, vorname, geschlecht, null);
-	}
-
-	public KundeVO(String nachname, String vorname) {
-		this(nachname, vorname, null, null);
-	}
-
 	public void setGeburtsdatum(LocalDate geburtsdatum) {
 		if (berechneAlter(geburtsdatum) > 17)
 			this.geburtsdatum = geburtsdatum;
@@ -70,7 +70,7 @@ public class KundeVO {
 	}
 
 	public void setNachname(String nachname) {
-		if (nachname != "")
+		if (nachname != null)
 			this.nachname = nachname;
 	}
 
@@ -79,7 +79,7 @@ public class KundeVO {
 	}
 
 	public void setVorname(String vorname) {
-		if (vorname != "" && vorname != null)
+		if (vorname != null)
 			this.vorname = vorname;
 	}
 
@@ -88,7 +88,7 @@ public class KundeVO {
 	}
 
 	public void setGeschlecht(String geschlecht) {
-		if (geschlecht == "m‰nnlich" || geschlecht == "weiblich")
+		if (geschlecht == "m√§nnlich" || geschlecht == "weiblich")
 			this.geschlecht = geschlecht;
 	}
 
@@ -115,7 +115,4 @@ public class KundeVO {
 				+ "\n" + getGeburtsdatumStr() + " Alter: " + alter
 				+ " " + geschlecht;
 	}
-	
-	
-
 }
