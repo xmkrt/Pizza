@@ -5,14 +5,14 @@ public class PizzaVO {
 	private float preis;
 	private String[] zutaten;
 
-	public PizzaVO() {
-		this(null, 0.0F, null);
-	}
-
 	public PizzaVO(String name, float preis, String[] zutaten) {
 		setName(name);
 		setPreis(preis);
 		setZutaten(zutaten);
+	}
+	
+	public PizzaVO() {
+		this(null, 0.0F, null);
 	}
 	
 	public Object clone(){
@@ -49,7 +49,7 @@ public class PizzaVO {
 	}
 
 	public void setName(String name) {
-		if (name != "")
+		if (name != null)
 			this.name = name;
 	}
 
@@ -67,12 +67,11 @@ public class PizzaVO {
 	}
 
 	public void setZutaten(String[] zutaten) {
-		this.zutaten = zutaten;
+		if (zutaten != null)
+			this.zutaten = zutaten;
 	}
 
 	public String toString() {
-		return "PizzaVO [Name: " + name + ", Preis: " + preis + " Zutaten:" + Arrays.toString(zutaten);
+		return "Name: " + name + " Preis: " + preis + " Zutaten: " + Arrays.toString(zutaten);
 	}
-	
-
 }
