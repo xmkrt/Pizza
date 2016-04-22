@@ -4,43 +4,73 @@ public class KochVO {
 	private String nachname;
 	private String vorname;
 	private Color farbeSchuerze;
+
+	public KochVO() {
+		this(null, null, null);
+	}
 	
-	public KochVO(String nachname, String vorname, Color farbeSchuerze){
+	public KochVO(String nachname, String vorname, Color farbeSchuerze) {
 		setNachname(nachname);
 		setVorname(vorname);
 		setFarbeSchuerze(farbeSchuerze);
 	}
-	
-	public KochVO(){
-		this(null,null, null);
-	}
-	
-	public void setNachname(String nachname){
-		if (nachname != "")
+
+	public void setNachname(String nachname) {
+		if (nachname != null)
 			this.nachname = nachname;
 	}
-	
-	public String getNachname(){
+
+	public String getNachname() {
 		return nachname;
 	}
-	
-	public void setVorname(String vorname){
-		if (vorname != "")
+
+	public void setVorname(String vorname) {
+		if (vorname !=  null)
 			this.vorname = vorname;
 	}
-	
-	public String getVorname(){
+
+	public String getVorname() {
 		return vorname;
-	} 
-	
-	public void setFarbeSchuerze(Color farbeSchuerze){
+	}
+
+	public void setFarbeSchuerze(Color farbeSchuerze) {
 		if (farbeSchuerze != null)
 			this.farbeSchuerze = farbeSchuerze;
 	}
-	
-	public Color getFarbeSchuerze(){
+
+	public Color getFarbeSchuerze() {
 		return farbeSchuerze;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Nachname: " + nachname + "  Vorname: " + vorname + " Schuerzenfarbe: " + farbeSchuerze;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((farbeSchuerze == null) ? 0 : farbeSchuerze.hashCode());
+		result = prime * result + ((nachname == null) ? 0 : nachname.hashCode());
+		result = prime * result + ((vorname == null) ? 0 : vorname.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		KochVO check;
+		check = (KochVO) obj;
+		if (this.nachname.equals(check.getNachname()) && this.vorname.equals(check.getVorname())
+				&& this.farbeSchuerze.equals(check.getFarbeSchuerze()))
+			return true;
+		else
+			return false;
+	}
 }
