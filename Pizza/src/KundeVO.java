@@ -92,7 +92,7 @@ public class KundeVO {
 	}
 
 	public void setGeschlecht(String geschlecht) {
-		if (geschlecht == "m√§nnlich" || geschlecht == "weiblich")
+		if (geschlecht == "m‰nnlich" || geschlecht == "weiblich")
 			this.geschlecht = geschlecht;
 	}
 
