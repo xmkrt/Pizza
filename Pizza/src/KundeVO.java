@@ -97,7 +97,9 @@ public class KundeVO {
 	}
 
 	private String getGeburtsdatumStr() {
-		return geburtsdatum.format(DateTimeFormatter.ofPattern("dd.MMM.yyyy"));
+		if (geburtsdatum != null)
+			return geburtsdatum.format(DateTimeFormatter.ofPattern("dd.MMM.yyyy"));
+		else return "";
 	}
 
 	public int getId() {
@@ -109,11 +111,17 @@ public class KundeVO {
 	}
 
 	public short berechneAlter(LocalDate geburtsdatum) {
-		Period zeit = Period.between(geburtsdatum, LocalDate.now());
-		return (short) zeit.getYears();
+		if (geburtsdatum != null){
+			Period zeit = Period.between(geburtsdatum, LocalDate.now());
+			if (!zeit.isNegative())
+				return (short) zeit.getYears();
+			else return -1;
+			}
+		else return -1;
 	}
 	
 	public String toString(){
+		
 		return "ID: " + id + " Name: " + vorname  + " " + nachname 
 				+ "\n" + getGeburtsdatumStr() + " Alter: " + alter
 				+ " " + geschlecht;
