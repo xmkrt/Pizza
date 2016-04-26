@@ -11,9 +11,9 @@ public class PizzaVO {
 	
 	
 	public PizzaVO(String name, float preis, String[] zutaten) {
-		setName(name);
-		setPreis(preis);
-		setZutaten(zutaten);
+		this.name = name;
+		this.preis = preis;
+		this.zutaten = zutaten;
 	}	
 	
 	public Object clone(){

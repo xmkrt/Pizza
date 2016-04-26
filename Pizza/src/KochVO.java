@@ -10,9 +10,9 @@ public class KochVO {
 	}
 	
 	public KochVO(String nachname, String vorname, Color farbeSchuerze) {
-		setNachname(nachname);
-		setVorname(vorname);
-		setFarbeSchuerze(farbeSchuerze);
+		this.nachname = nachname;
+		this.vorname = vorname;
+		this.farbeSchuerze = farbeSchuerze;
 	}
 
 	public void setNachname(String nachname) {
@@ -42,12 +42,10 @@ public class KochVO {
 		return farbeSchuerze;
 	}
 
-	@Override
 	public String toString() {
 		return "Nachname: " + nachname + "  Vorname: " + vorname + " Schuerzenfarbe: " + farbeSchuerze;
 	}
 
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;

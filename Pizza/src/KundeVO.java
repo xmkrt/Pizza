@@ -26,9 +26,9 @@ public class KundeVO {
 	public KundeVO(String nachname, String vorname, String geschlecht, LocalDate geburtsdatum) {
 		id = naechsteID;
 		naechsteID++;
-		setNachname(nachname);
-		setVorname(vorname);
-		setGeschlecht(geschlecht);
+		this.nachname = nachname;
+		this.vorname = vorname;
+		this.geschlecht = geschlecht;
 		setGeburtsdatum(geburtsdatum);
 	}	
 	
@@ -65,6 +65,10 @@ public class KundeVO {
 			this.geburtsdatum = null;
 			alter = 0;
 	}
+	
+	public LocalDate getGeburtsdatum() {
+        return geburtsdatum;
+    }
 
 	public String getNachname() {
 		return nachname;
