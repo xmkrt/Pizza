@@ -56,9 +56,10 @@ public class KundeVO {
 	}
 
 	public void setGeburtsdatum(LocalDate geburtsdatum) {
-		short alter = berechneAlter(geburtsdatum);
+		this.geburtsdatum = geburtsdatum;
+		short alter = this.berechneAlter();
 		if (alter > 17){
-			this.geburtsdatum = geburtsdatum;
+			
 			this.alter = alter;
 		}
 		else
@@ -111,15 +112,12 @@ public class KundeVO {
 		return alter;
 	}
 
-	public short berechneAlter(LocalDate geburtsdatum) {
-		if (geburtsdatum != null){
-			Period zeit = Period.between(geburtsdatum, LocalDate.now());
+	public short berechneAlter() {
+			Period zeit = Period.between(this.getGeburtsdatum(), LocalDate.now());
 			if (!zeit.isNegative())
 				return (short)zeit.getYears();
 			else return -1;
 			}
-		else return -1;
-	}
 	
 	public String toString(){
 		
