@@ -3,7 +3,7 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 
 public class KundeVO {
-	private static int naechstID = 0;
+	private static int naechsteID = 0;
 	private int id;
 	private String nachname;
 	private String vorname;
@@ -24,8 +24,8 @@ public class KundeVO {
 	}
 	
 	public KundeVO(String nachname, String vorname, String geschlecht, LocalDate geburtsdatum) {
-		id = naechstID;
-		naechstID++;
+		id = naechsteID;
+		naechsteID++;
 		setNachname(nachname);
 		setVorname(vorname);
 		setGeschlecht(geschlecht);
@@ -52,10 +52,7 @@ public class KundeVO {
 			return false;
 		KundeVO check;
 		check = (KundeVO)obj;
-		if(this.id == check.getId())			
-			return true;
-		else 
-			return false;
+		return (this.id == check.getId());
 	}
 
 	public void setGeburtsdatum(LocalDate geburtsdatum) {
@@ -114,7 +111,7 @@ public class KundeVO {
 		if (geburtsdatum != null){
 			Period zeit = Period.between(geburtsdatum, LocalDate.now());
 			if (!zeit.isNegative())
-				return (short) zeit.getYears();
+				return (short)zeit.getYears();
 			else return -1;
 			}
 		else return -1;

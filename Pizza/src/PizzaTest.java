@@ -4,10 +4,12 @@ import java.time.LocalDate;
 public class PizzaTest {
 
 	public static void main(String[] args) {
-		LocalDate geb = LocalDate.of(2017, 1, 16);
+		LocalDate geb = LocalDate.of(1985, 1, 16);
 		
 		KundeVO einKunde = new KundeVO("Müller", "Gerd", "männlich", geb);
 		KundeVO nocheinKunde = new KundeVO("TT", "AS", "weiblich", geb);
+		if (einKunde.equals(nocheinKunde))
+			System.out.println("sdsdasdasd");
 		System.out.println(einKunde);
 		System.out.println(nocheinKunde);
 		
