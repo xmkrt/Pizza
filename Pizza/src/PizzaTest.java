@@ -18,7 +18,7 @@ public class PizzaTest {
 		
 		
 		String[] zutaten = {"Tomatensauce","Käse","Peperoni"};
-		PizzaVO meinePizza = new PizzaVO("Peperoni", 8.5F,zutaten);
+		PizzaVO meinePizza = new PizzaVO("Peperoni",zutaten,8.5F);
 		PizzaVO test = (PizzaVO)meinePizza.clone();
 		String[] a = {"Zeug", "Nuss", "Eis"};
 		test.setZutaten(a);

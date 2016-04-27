@@ -6,29 +6,33 @@ public class PizzaVO {
 	private String[] zutaten;
 
 	public PizzaVO() {
-		this(null, 0.0F, null);
+		this(null, null, 0.0F);
 	}
 
-	public PizzaVO(String name, float preis, String[] zutaten) {
+	public PizzaVO(String name, String[] zutaten, float preis) {
 		setName(name);
 		setPreis(preis);
 		setZutaten(zutaten);
 	}
 	
 	public Object clone(){
-		PizzaVO neuePizza = new PizzaVO(this.name, this.preis, this.zutaten);
+		PizzaVO neuePizza = new PizzaVO(this.name, this.zutaten, this.preis);
 		return neuePizza;		
 	}
 	
+
+
+	@Override
 	public int hashCode() {
-		final int hashMultiplier = 31;
-		int hc = 1;
-		hc = hashMultiplier * hc + ((name == null) ? 0 : name.hashCode());
-		hc = hashMultiplier * hc + Float.floatToIntBits(preis);
-		hc = hashMultiplier * hc + Arrays.hashCode(zutaten);
-		return hc;
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + Float.floatToIntBits(preis);
+		result = prime * result + Arrays.hashCode(zutaten);
+		return result;
 	}
 
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -36,12 +40,17 @@ public class PizzaVO {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		PizzaVO check;
-		check = (PizzaVO)obj;
-		if(this.name.equals(check.getName()) && this.preis == check.getPreis() && this.zutaten.equals(check.getZutaten()))
-			return true;
-		else 
+		PizzaVO other = (PizzaVO) obj;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
 			return false;
+		if (Float.floatToIntBits(preis) != Float.floatToIntBits(other.preis))
+			return false;
+		if (!Arrays.equals(zutaten, other.zutaten))
+			return false;
+		return true;
 	}
 
 	public String getName() {
