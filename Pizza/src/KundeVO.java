@@ -102,11 +102,18 @@ public class KundeVO {
 	}
 
 	public short berechneAlter() {
+		if (this.getGeburtsdatum() != null)
+		{
 			Period zeit = Period.between(this.getGeburtsdatum(), LocalDate.now());
 			if (!zeit.isNegative())
-				return (short)zeit.getYears();
-			else return -1;
+				if ((short)zeit.getYears() < 18)
+					return -1;
+				else return (short)zeit.getYears();
+			return -1;
 			}
+		else return -1;
+	}
+	
 	
 	public String toString(){
 		
@@ -114,4 +121,9 @@ public class KundeVO {
 				+ "\n" + getGeburtsdatumStr() + " Alter: " + berechneAlter()
 				+ " " + geschlecht;
 	}
+
+	public static int getNaechsteID() {
+		return naechsteID;
+	}	
+	
 }
