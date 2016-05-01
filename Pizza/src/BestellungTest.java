@@ -6,9 +6,9 @@ public class BestellungTest {
 		Bestellung meineBestellung = new Bestellung(LocalDateTime.now(),null);
 		Bestellung nochEineBestellung = new Bestellung(null,null);
 		
-		meineBestellung.setZeitstempelAuslieferung(LocalDateTime.parse("2016-04-27T12:30"));
+		meineBestellung.setZeitstempelAuslieferung(LocalDateTime.of(2016, 4, 27, 14, 37));
 		
-		nochEineBestellung.setZeitstempelBestellung(LocalDateTime.parse("2016-04-27T11:00"));
+		nochEineBestellung.setZeitstempelBestellung(LocalDateTime.of(2016, 4, 27, 12, 12));
 		nochEineBestellung.setZeitstempelAuslieferung(LocalDateTime.parse("2016-04-27T13:00"));
 		
 		if (!meineBestellung.equals(nochEineBestellung))

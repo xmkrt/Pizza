@@ -7,7 +7,7 @@ public class Bestellung {
 	
 	public String toString() {
 		return "Bestellung von " + zeitstempelBestellung.format(DateTimeFormatter.ofPattern("dd.MMM.yyyy hh:ss")) + "\nAuslieferung: "
-				+ zeitstempelAuslieferung.format(DateTimeFormatter.ofPattern("dd.MMM.yyyy.hh.ss"));
+				+ zeitstempelAuslieferung.format(DateTimeFormatter.ofPattern("dd.MMM.yyyy.hh.ss"))+ "\n";
 	}
 
 	public Bestellung(LocalDateTime zeitstempelBestellung, LocalDateTime zeitstempelAuslieferung) {
