@@ -9,7 +9,6 @@ public class KundeVO {
 	private String vorname;
 	private String geschlecht;
 	private LocalDate geburtsdatum;
-	private short alter;
 	
 	public KundeVO() {
 		this(null, null, null, null);
@@ -35,7 +34,6 @@ public class KundeVO {
 	public int hashCode() {
 		final int hashMultiplier = 47;
 		int hc = 1;
-		hc = hashMultiplier * hc + alter;
 		hc = hashMultiplier * hc + ((geburtsdatum == null) ? 0 : geburtsdatum.hashCode());
 		hc = hashMultiplier * hc + ((geschlecht == null) ? 0 : geschlecht.hashCode());
 		hc = hashMultiplier * hc + ((nachname == null) ? 0 : nachname.hashCode());
@@ -56,14 +54,10 @@ public class KundeVO {
 	}
 
 	public void setGeburtsdatum(LocalDate geburtsdatum) {
-		short alter = berechneAlter(geburtsdatum);
-		if (alter > 17){
-			this.geburtsdatum = geburtsdatum;
-			this.alter = alter;
-		}
-		else
+		this.geburtsdatum = geburtsdatum;
+		short alter = this.berechneAlter();
+		if (alter < 17)
 			this.geburtsdatum = null;
-			alter = 0;
 	}
 	
 	public LocalDate getGeburtsdatum() {
@@ -107,24 +101,29 @@ public class KundeVO {
 		return id;
 	}
 
-	public short getAlter() {
-		return alter;
-	}
-
-	public short berechneAlter(LocalDate geburtsdatum) {
-		if (geburtsdatum != null){
-			Period zeit = Period.between(geburtsdatum, LocalDate.now());
+	public short berechneAlter() {
+		if (this.getGeburtsdatum() != null)
+		{
+			Period zeit = Period.between(this.getGeburtsdatum(), LocalDate.now());
 			if (!zeit.isNegative())
-				return (short)zeit.getYears();
-			else return -1;
+				if ((short)zeit.getYears() < 18)
+					return -1;
+				else return (short)zeit.getYears();
+			return -1;
 			}
 		else return -1;
 	}
 	
+	
 	public String toString(){
 		
 		return "ID: " + id + " Name: " + vorname  + " " + nachname 
-				+ "\n" + getGeburtsdatumStr() + " Alter: " + alter
+				+ "\n" + getGeburtsdatumStr() + " Alter: " + berechneAlter()
 				+ " " + geschlecht;
 	}
+
+	public static int getNaechsteID() {
+		return naechsteID;
+	}	
+	
 }
