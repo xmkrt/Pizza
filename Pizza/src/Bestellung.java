@@ -59,8 +59,4 @@ public class Bestellung {
 	public void setZeitstempelAuslieferung(LocalDateTime zeitstempelAuslieferung) {
 		this.zeitstempelAuslieferung = zeitstempelAuslieferung;
 	}
-	
-	
-	
-
 }

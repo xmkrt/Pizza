@@ -4,35 +4,32 @@ public class PizzaVO {
 	private String name;
 	private float preis;
 	private String[] zutaten;
-
+	
 	public PizzaVO() {
-		this(null, null, 0.0F);
-	}
-
-	public PizzaVO(String name, String[] zutaten, float preis) {
-		setName(name);
-		setPreis(preis);
-		setZutaten(zutaten);
+		this(null, 0.0F, null);
 	}
 	
+	
+	public PizzaVO(String name, float preis, String[] zutaten) {
+		this.name = name;
+		this.preis = preis;
+		this.zutaten = zutaten;
+	}	
+	
 	public Object clone(){
-		PizzaVO neuePizza = new PizzaVO(this.name, this.zutaten, this.preis);
+		PizzaVO neuePizza = new PizzaVO(this.name, this.preis, this.zutaten);
 		return neuePizza;		
 	}
 	
-
-
-	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + Float.floatToIntBits(preis);
-		result = prime * result + Arrays.hashCode(zutaten);
-		return result;
+		final int hashMultiplier = 31;
+		int hc = 1;
+		hc = hashMultiplier * hc + ((name == null) ? 0 : name.hashCode());
+		hc = hashMultiplier * hc + Float.floatToIntBits(preis);
+		hc = hashMultiplier * hc + Arrays.hashCode(zutaten);
+		return hc;
 	}
 
-	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -40,17 +37,12 @@ public class PizzaVO {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		PizzaVO other = (PizzaVO) obj;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
+		PizzaVO check;
+		check = (PizzaVO)obj;
+		if(this.name.equals(check.getName()) && this.preis == check.getPreis() && this.zutaten.equals(check.getZutaten()))
+			return true;
+		else 
 			return false;
-		if (Float.floatToIntBits(preis) != Float.floatToIntBits(other.preis))
-			return false;
-		if (!Arrays.equals(zutaten, other.zutaten))
-			return false;
-		return true;
 	}
 
 	public String getName() {
@@ -58,7 +50,7 @@ public class PizzaVO {
 	}
 
 	public void setName(String name) {
-		if (name != "")
+		if (name != null)
 			this.name = name;
 	}
 
@@ -67,7 +59,7 @@ public class PizzaVO {
 	}
 
 	public void setPreis(float preis) {
-		if (preis >= 0)
+		if (preis >= 0.0F)
 			this.preis = preis;
 	}
 
@@ -76,12 +68,11 @@ public class PizzaVO {
 	}
 
 	public void setZutaten(String[] zutaten) {
-		this.zutaten = zutaten;
+		if (zutaten != null)
+			this.zutaten = zutaten;
 	}
 
 	public String toString() {
-		return "PizzaVO [Name: " + name + ", Preis: " + preis + " Zutaten:" + Arrays.toString(zutaten);
+		return "Name: " + name + " Preis: " + preis + " Zutaten: " + Arrays.toString(zutaten);
 	}
-	
-
 }
