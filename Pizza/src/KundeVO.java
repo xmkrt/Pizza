@@ -110,10 +110,9 @@ public class KundeVO {
 					return -1;
 				else return (short)zeit.getYears();
 			return -1;
-			}
+		}
 		else return -1;
 	}
-	
 	
 	public String toString(){
 		
