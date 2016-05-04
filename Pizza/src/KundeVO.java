@@ -9,6 +9,7 @@ public class KundeVO {
 	private String vorname;
 	private String geschlecht;
 	private LocalDate geburtsdatum;
+	private Bestellung bestellung;
 	
 	public KundeVO() {
 		this(null, null, null, null);
@@ -52,6 +53,10 @@ public class KundeVO {
 		check = (KundeVO)obj;
 		return (this.id == check.getId());
 	}
+	
+//	public boolean hasBestellung(){
+//		
+//	}
 
 	public void setGeburtsdatum(LocalDate geburtsdatum) {
 		this.geburtsdatum = geburtsdatum;
