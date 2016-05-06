@@ -80,7 +80,7 @@ public class PizzaVO {
 	}
 
 	public String toString() {
-		return "PizzaVO [Name: " + name + ", Preis: " + preis + " Zutaten:" + Arrays.toString(zutaten);
+		return name + ", " + preis + "€\n" + Arrays.toString(zutaten);
 	}
 	
 

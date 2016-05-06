@@ -9,18 +9,20 @@ public class Bestellung {
 	private LocalDateTime zeitstempelAuslieferung;
 	private int index;
 	private PizzaVO[] warenkorb;
+	private KundeVO kunde;
 	
-	private static final int  MAX_GERICHTE = 100;
+	private static final int  MAX_GERICHTE = 10;
 	
-	public Bestellung(LocalDateTime zeitstempelBestellung, LocalDateTime zeitstempelAuslieferung) {
-		this.zeitstempelBestellung = zeitstempelBestellung;
-		this.zeitstempelAuslieferung = zeitstempelAuslieferung;
+	public Bestellung(LocalDateTime bestellung, LocalDateTime auslieferung, KundeVO kunde) {
+		this.zeitstempelBestellung = bestellung;
+		this.zeitstempelAuslieferung = auslieferung;
+		this.kunde = kunde;
 		index = 0;
 		warenkorb = new PizzaVO[MAX_GERICHTE];		
 	}
 	
 	public Bestellung() {
-		this(null,null);
+		this(null,null,null);
 	}
 	
 	public void hinzufuegenGericht(PizzaVO gericht){
@@ -40,8 +42,17 @@ public class Bestellung {
 	}
 		
 	public String toString() {
-		return "Bestellung von " + zeitstempelBestellung.format(DateTimeFormatter.ofPattern("dd.MMM.yyyy hh:ss")) + "\nAuslieferung: "
-				+ zeitstempelAuslieferung.format(DateTimeFormatter.ofPattern("dd.MMM.yyyy.hh.ss"))+ "\n";
+		String wk = "";
+		for (PizzaVO position : warenkorb) {
+			if (position != null)
+				wk += position + "\n";
+		}
+
+		return "Bestellung vom " + zeitstempelBestellung.format(DateTimeFormatter.ofPattern("dd.MMM.yyyy hh:ss"))
+				+ " mit Lieferung am "
+				+ zeitstempelAuslieferung.format(DateTimeFormatter.ofPattern("dd.MMM.yyyy.hh.ss")) + "\n"
+				+ this.kunde.getVorname() + " " + this.kunde.getNachname() + " Kundennummer: " + this.kunde.getId()
+				+ "\n" + wk;
 	}
 	
 	@Override
@@ -111,5 +122,13 @@ public class Bestellung {
 
 	public static int getMaxGerichte() {
 		return MAX_GERICHTE;
+	}
+
+	public KundeVO getKunde() {
+		return kunde;
+	}
+
+	public void setKunde(KundeVO kunde) {
+		this.kunde = kunde;
 	}	
 }
