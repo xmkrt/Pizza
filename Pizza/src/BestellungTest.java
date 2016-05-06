@@ -26,8 +26,6 @@ public class BestellungTest {
 		
 		if (!meineBestellung.equals(nochEineBestellung))
 			System.out.println("Die Bestellungen sind underschiedlich");
-		
-		
 		System.out.println(meineBestellung);
 	}
 

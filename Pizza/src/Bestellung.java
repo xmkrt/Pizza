@@ -2,8 +2,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
-import javax.swing.text.StyledEditorKit.ForegroundAction;
-
 public class Bestellung {
 	private LocalDateTime zeitstempelBestellung;
 	private LocalDateTime zeitstempelAuslieferung;
@@ -26,7 +24,8 @@ public class Bestellung {
 	}
 	
 	public void hinzufuegenGericht(PizzaVO gericht){
-		warenkorb[index++] = gericht;
+		if (index < MAX_GERICHTE)
+			warenkorb[index++] = gericht;
 	}
 	
 	public void loescheLetztesGericht(){
