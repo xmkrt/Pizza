@@ -11,25 +11,26 @@ public class KundeVO extends PersonVO{
 	private Bestellung bestellung;
 
 	public KundeVO() {
-		this(null, null, null, null, null);
+		this(null, null, null, 0, null, null, null);
 	}
 
 	public KundeVO(String nachname, String vorname) {
-		this(nachname, vorname, null, null, null);
+		this(nachname, vorname, null, 0, null, null, null);
 	}
 
-	public KundeVO(String nachname, String vorname, String geschlecht) {
-		this(nachname, vorname, geschlecht, null, null);
+	public KundeVO(String nachname, String vorname, String geschlecht)
+	{
+		this(nachname, vorname, null, 0, geschlecht, null, null);
 	}
 
-	public KundeVO(String nachname, String vorname, String geschlecht, LocalDate geburtsdatum, Bestellung bestellung) {
+	public KundeVO(String nachname, String vorname, String strasse, int hausNr, String geschlecht, LocalDate geburtsdatum, Bestellung bestellung) {
+		super(nachname,vorname,strasse,hausNr);
 		id = naechsteID++;
-		this.nachname = nachname;
-		this.vorname = vorname;
 		this.geschlecht = geschlecht;
 		this.bestellung = bestellung;
 		setGeburtsdatum(geburtsdatum);
 	}
+
 
 	public int hashCode() {
 		final int hashMultiplier = 47;
@@ -83,7 +84,7 @@ public class KundeVO extends PersonVO{
 	}
 
 	public void setGeschlecht(String geschlecht) {
-		if (geschlecht == "männlich" || geschlecht == "weiblich")
+		if (geschlecht == "mï¿½nnlich" || geschlecht == "weiblich")
 			this.geschlecht = geschlecht;
 	}
 
