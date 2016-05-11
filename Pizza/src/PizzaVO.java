@@ -19,8 +19,6 @@ public class PizzaVO {
 		PizzaVO neuePizza = new PizzaVO(this.name, this.zutaten, this.preis);
 		return neuePizza;		
 	}
-	
-
 
 	@Override
 	public int hashCode() {

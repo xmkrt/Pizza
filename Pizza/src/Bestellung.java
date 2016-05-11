@@ -3,20 +3,20 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
 public class Bestellung {
+	private static final int MAX_GERICHTE = 10;
+	
 	private LocalDateTime zeitstempelBestellung;
 	private LocalDateTime zeitstempelAuslieferung;
 	private int index;
 	private PizzaVO[] warenkorb;
 	private KundeVO kunde;
 	
-	private static final int  MAX_GERICHTE = 10;
-	
 	public Bestellung(LocalDateTime bestellung, LocalDateTime auslieferung, KundeVO kunde) {
-		this.zeitstempelBestellung = bestellung;
-		this.zeitstempelAuslieferung = auslieferung;
-		this.kunde = kunde;
+		setZeitstempelBestellung(bestellung);
+		setZeitstempelAuslieferung(auslieferung);
+		setKunde(kunde);
 		index = 0;
-		warenkorb = new PizzaVO[MAX_GERICHTE];		
+		warenkorb = new PizzaVO[MAX_GERICHTE];
 	}
 	
 	public Bestellung() {
@@ -24,7 +24,7 @@ public class Bestellung {
 	}
 	
 	public void hinzufuegenGericht(PizzaVO gericht){
-		if (index < MAX_GERICHTE)
+		if (index < MAX_GERICHTE && gericht != null)
 			warenkorb[index++] = gericht;
 	}
 	
@@ -46,14 +46,32 @@ public class Bestellung {
 			if (position != null)
 				wk += position + "\n";
 		}
+		if (wk == "")
+			return kunde.toString() + " hat keine Bestellung";
 
-		return "Bestellung vom " + zeitstempelBestellung.format(DateTimeFormatter.ofPattern("dd.MMM.yyyy hh:ss"))
+		else return "Bestellung vom " + zeitstempelBestellung.format(DateTimeFormatter.ofPattern("dd.MMM.yyyy hh:ss"))
 				+ " mit Lieferung am "
 				+ zeitstempelAuslieferung.format(DateTimeFormatter.ofPattern("dd.MMM.yyyy.hh.ss")) + "\n"
-				+ this.kunde.getVorname() + " " + this.kunde.getNachname() + " Kundennummer: " + this.kunde.getId()
+				+ kunde.toString()
 				+ "\n" + wk;
 	}
 	
+	public LocalDateTime getZeitstempelBestellung() {
+		return zeitstempelBestellung;
+	}
+	
+	public void setZeitstempelBestellung(LocalDateTime zeitstempelBestellung) {
+		this.zeitstempelBestellung = zeitstempelBestellung;
+	}
+	
+	public LocalDateTime getZeitstempelAuslieferung() {
+		return zeitstempelAuslieferung;
+	}
+	
+	public void setZeitstempelAuslieferung(LocalDateTime zeitstempelAuslieferung) {
+		this.zeitstempelAuslieferung = zeitstempelAuslieferung;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -89,30 +107,6 @@ public class Bestellung {
 		} else if (!zeitstempelBestellung.equals(other.zeitstempelBestellung))
 			return false;
 		return true;
-	}
-
-	public LocalDateTime getZeitstempelBestellung() {
-		return zeitstempelBestellung;
-	}
-	
-	public void setZeitstempelBestellung(LocalDateTime zeitstempelBestellung) {
-		this.zeitstempelBestellung = zeitstempelBestellung;
-	}
-	
-	public LocalDateTime getZeitstempelAuslieferung() {
-		return zeitstempelAuslieferung;
-	}
-	
-	public void setZeitstempelAuslieferung(LocalDateTime zeitstempelAuslieferung) {
-		this.zeitstempelAuslieferung = zeitstempelAuslieferung;
-	}
-	
-	public PizzaVO[] getWarenkorb() {
-		return warenkorb;
-	}
-
-	public void setWarenkorb(PizzaVO[] warenkorb) {
-		this.warenkorb = warenkorb;
 	}
 
 	public int getIndex() {

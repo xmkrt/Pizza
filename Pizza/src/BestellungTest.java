@@ -5,8 +5,8 @@ public class BestellungTest {
 
 	public static void main(String[] args) {
 		LocalDate geb = LocalDate.of(1988, 1, 16);
-		KundeVO einKunde = new KundeVO("Müller", "Gerd", "männlich", geb);
-		KundeVO nocheinKunde = new KundeVO("TT", "AS", "weiblich", geb);
+		KundeVO einKunde = new KundeVO("Müller", "Gerd", "männlich", geb, null);
+		KundeVO nocheinKunde = new KundeVO("TT", "AS", "weiblich", geb, null);
 		
 		String[] zutaten = {"Tomatensauce","Käse","Peperoni"};
 		PizzaVO meinePizza = new PizzaVO("Peperoni",zutaten,8.5F);

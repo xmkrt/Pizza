@@ -3,32 +3,31 @@ import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 
-public class KundeVO {
+public class KundeVO extends PersonVO{
 	private static int naechsteID = 0;
 	private int id;
-	private String nachname;
-	private String vorname;
 	private String geschlecht;
 	private LocalDate geburtsdatum;
 	private Bestellung bestellung;
 
 	public KundeVO() {
-		this(null, null, null, null);
+		this(null, null, null, null, null);
 	}
 
 	public KundeVO(String nachname, String vorname) {
-		this(nachname, vorname, null, null);
+		this(nachname, vorname, null, null, null);
 	}
 
 	public KundeVO(String nachname, String vorname, String geschlecht) {
-		this(nachname, vorname, geschlecht, null);
+		this(nachname, vorname, geschlecht, null, null);
 	}
 
-	public KundeVO(String nachname, String vorname, String geschlecht, LocalDate geburtsdatum) {
+	public KundeVO(String nachname, String vorname, String geschlecht, LocalDate geburtsdatum, Bestellung bestellung) {
 		id = naechsteID++;
 		this.nachname = nachname;
 		this.vorname = vorname;
 		this.geschlecht = geschlecht;
+		this.bestellung = bestellung;
 		setGeburtsdatum(geburtsdatum);
 	}
 
@@ -55,7 +54,9 @@ public class KundeVO {
 	}
 
 	public boolean hasBestellung() {
-		return (bestellung != null);
+		if (bestellung != null)
+			return true;
+		else return false;
 	}
 
 	public Bestellung getBestellung() {
@@ -75,24 +76,6 @@ public class KundeVO {
 
 	public LocalDate getGeburtsdatum() {
 		return geburtsdatum;
-	}
-
-	public String getNachname() {
-		return nachname;
-	}
-
-	public void setNachname(String nachname) {
-		if (nachname != null)
-			this.nachname = nachname;
-	}
-
-	public String getVorname() {
-		return vorname;
-	}
-
-	public void setVorname(String vorname) {
-		if (vorname != null)
-			this.vorname = vorname;
 	}
 
 	public String getGeschlecht() {
@@ -130,7 +113,7 @@ public class KundeVO {
 
 	public String toString() {
 
-		return "ID: " + id + " Name: " + vorname + " " + nachname + "\n" + getGeburtsdatumStr() + " Alter: "
+		return "ID: " + id + " Name: " + super.toString() + "\n" + getGeburtsdatumStr() + " Alter: "
 				+ berechneAlter() + " " + geschlecht;
 	}
 
