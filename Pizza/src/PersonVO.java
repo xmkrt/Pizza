@@ -23,7 +23,7 @@ public class PersonVO {
 
 	@Override
 	public String toString() {
-		return vorname + " " + nachname + "\n" + strasse + " " + hausNr;
+		return "Name: " + vorname + " " + nachname + "\n" + "Straße: " + strasse + " " + hausNr;
 	}
 
 	@Override

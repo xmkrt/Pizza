@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.util.Arrays;
 
 public class PizzaVO {
@@ -78,7 +79,8 @@ public class PizzaVO {
 	}
 
 	public String toString() {
-		return name + ", " + preis + "€\n" + Arrays.toString(zutaten);
+		DecimalFormat df = new DecimalFormat("#.00");
+		return name + ", " + df.format(preis) + "â‚¬\n" + Arrays.toString(zutaten);
 	}
 	
 

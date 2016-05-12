@@ -55,9 +55,7 @@ public class KundeVO extends PersonVO{
 	}
 
 	public boolean hasBestellung() {
-		if (bestellung != null)
-			return true;
-		else return false;
+		return (bestellung!=null);
 	}
 
 	public Bestellung getBestellung() {
@@ -84,7 +82,7 @@ public class KundeVO extends PersonVO{
 	}
 
 	public void setGeschlecht(String geschlecht) {
-		if (geschlecht == "m�nnlich" || geschlecht == "weiblich")
+		if (geschlecht == "männlich" || geschlecht == "weiblich")
 			this.geschlecht = geschlecht;
 	}
 
@@ -113,9 +111,13 @@ public class KundeVO extends PersonVO{
 	}
 
 	public String toString() {
-
-		return "ID: " + id + " Name: " + super.toString() + "\n" + getGeburtsdatumStr() + " Alter: "
-				+ berechneAlter() + " " + geschlecht;
+		String ausgabe = "";
+		ausgabe += "ID: " + id + "\n" + super.toString() + "\n" + "Alter: " + berechneAlter();
+		if (!hasBestellung())
+			ausgabe += "\nkeine Bestellung vorhanden";
+        else
+            ausgabe += this.bestellung.toString();
+		return ausgabe;
 	}
 
 	public static int getNaechsteID() {

@@ -15,7 +15,7 @@ public class Bestellung {
 		setZeitstempelBestellung(bestellung);
 		setZeitstempelAuslieferung(auslieferung);
 		setKunde(kunde);
-		index = 0;
+        index = 0;
 		warenkorb = new PizzaVO[MAX_GERICHTE];
 	}
 	
@@ -49,11 +49,13 @@ public class Bestellung {
 		if (wk == "")
 			return kunde.toString() + " hat keine Bestellung";
 
-		else return "Bestellung vom " + zeitstempelBestellung.format(DateTimeFormatter.ofPattern("dd.MMM.yyyy hh:ss"))
-				+ " mit Lieferung am "
-				+ zeitstempelAuslieferung.format(DateTimeFormatter.ofPattern("dd.MMM.yyyy.hh.ss")) + "\n"
-				+ kunde.toString()
-				+ "\n" + wk;
+		else {
+			return "Bestellung vom " + zeitstempelBestellung.format(DateTimeFormatter.ofPattern("dd.MMM.yyyy hh:ss"))
+					+ " mit Lieferung am "
+					+ zeitstempelAuslieferung.format(DateTimeFormatter.ofPattern("dd.MMM.yyyy.hh.ss")) + "\n"
+					+ kunde.toString()
+					+ "\n" + wk;
+		}
 	}
 	
 	public LocalDateTime getZeitstempelBestellung() {

@@ -5,9 +5,9 @@ public class PizzaTest {
 
 	public static void main(String[] args) {
 		LocalDate geb = LocalDate.of(1985, 1, 16);
-		
-		KundeVO einKunde = new KundeVO("Müller", "Gerd", "männlich", geb, null);
-		KundeVO nocheinKunde = new KundeVO("TT", "AS", "weiblich", geb, null);
+
+		KundeVO einKunde = new KundeVO("MÃ¼ller", "Gerd","Sackgasse", 10, "mÃ¤nnlich", geb, null);
+		KundeVO nocheinKunde = new KundeVO("Maier", "Sabine","Holzweg", 5, "weiblich", geb, null);
 		if (einKunde.equals(nocheinKunde))
 			System.out.println("sdsdasdasd");
 		System.out.println(einKunde);
@@ -17,7 +17,7 @@ public class PizzaTest {
 		System.out.println(einKoch.getVorname() + einKoch.getNachname());
 		
 		
-		String[] zutaten = {"Tomatensauce","Käse","Peperoni"};
+		String[] zutaten = {"Tomatensauce","Kï¿½se","Peperoni"};
 		PizzaVO meinePizza = new PizzaVO("Peperoni",zutaten,8.5F);
 		PizzaVO test = (PizzaVO)meinePizza.clone();
 		String[] a = {"Zeug", "Nuss", "Eis"};
