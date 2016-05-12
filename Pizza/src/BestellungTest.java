@@ -17,9 +17,10 @@ public class BestellungTest {
 		//System.out.println(einKunde);
 		
 		Bestellung meineBestellung = new Bestellung(LocalDateTime.now(),LocalDateTime.of(2016, 5, 6, 12, 30), einKunde);
-		Bestellung nochEineBestellung = new Bestellung(null,null,null);
+        Bestellung nochEineBestellung = new Bestellung(null,null,null);
 		
 		meineBestellung.hinzufuegenGericht(meinePizza);
+        einKunde.setBestellung(meineBestellung);
 		System.out.println(einKunde);
 		
 		

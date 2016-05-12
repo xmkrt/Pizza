@@ -13,7 +13,7 @@ public class PizzaTest {
 		System.out.println(einKunde);
 		System.out.println(nocheinKunde);
 		
-		KochVO einKoch = new KochVO("Dampf", "Voll", Color.BLACK);
+		Koch einKoch = new Koch("Dampf", "Voll", Color.BLACK);
 		System.out.println(einKoch.getVorname() + einKoch.getNachname());
 		
 		

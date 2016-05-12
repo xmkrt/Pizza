@@ -63,7 +63,7 @@ public class KundeVO extends PersonVO{
 	}
 
 	public void setBestellung(Bestellung bestellung) {
-		this.bestellung = new Bestellung(LocalDateTime.now(), null, this);
+		this.bestellung = bestellung;
 	}
 
 	public void setGeburtsdatum(LocalDate geburtsdatum) {
@@ -113,8 +113,8 @@ public class KundeVO extends PersonVO{
 	public String toString() {
 		String ausgabe = "";
 		ausgabe += "ID: " + id + "\n" + super.toString() + "\n" + "Alter: " + berechneAlter();
-		if (!hasBestellung())
-			ausgabe += "\nkeine Bestellung vorhanden";
+        if (!hasBestellung())
+            ausgabe += "\nkeine Bestellung vorhanden";
         else
             ausgabe += this.bestellung.toString();
 		return ausgabe;

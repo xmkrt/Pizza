@@ -47,13 +47,12 @@ public class Bestellung {
 				wk += position + "\n";
 		}
 		if (wk == "")
-			return kunde.toString() + " hat keine Bestellung";
+			return  "\nhat keine Bestellung";
 
 		else {
-			return "Bestellung vom " + zeitstempelBestellung.format(DateTimeFormatter.ofPattern("dd.MMM.yyyy hh:ss"))
+			return "\nBestellung vom " + zeitstempelBestellung.format(DateTimeFormatter.ofPattern("dd.MMM.yyyy hh:ss"))
 					+ " mit Lieferung am "
 					+ zeitstempelAuslieferung.format(DateTimeFormatter.ofPattern("dd.MMM.yyyy.hh.ss")) + "\n"
-					+ kunde.toString()
 					+ "\n" + wk;
 		}
 	}
