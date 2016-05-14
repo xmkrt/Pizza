@@ -1,8 +1,6 @@
 import java.awt.Color;
 
 public class Koch extends Angestellter {
-	private String nachname;
-	private String vorname;
 	private Color farbeSchuerze;
 
 	public Koch() {
@@ -10,8 +8,7 @@ public class Koch extends Angestellter {
 	}
 	
 	public Koch(String nachname, String vorname, Color farbeSchuerze) {
-		this.nachname = nachname;
-		this.vorname = vorname;
+		super(nachname, vorname);
 		this.farbeSchuerze = farbeSchuerze;
 	}
 
@@ -19,6 +16,12 @@ public class Koch extends Angestellter {
 		if (nachname != null)
 			this.nachname = nachname;
 	}
+
+    public String arbeiten(){
+        return vorname + " " + nachname + "kocht!";
+    }
+
+    public void erstelltSpeisekarte(){}
 
 	public String getNachname() {
 		return nachname;
@@ -43,7 +46,7 @@ public class Koch extends Angestellter {
 	}
 
 	public String toString() {
-		return "Nachname: " + nachname + "  Vorname: " + vorname + " Schuerzenfarbe: " + farbeSchuerze;
+		return super.toString() + "\nSchürzenfarbe: " + farbeSchuerze;
 	}
 
 	public int hashCode() {

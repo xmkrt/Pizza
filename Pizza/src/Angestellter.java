@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 
 public class Angestellter extends PersonVO {
     protected int urlaubsTage;
@@ -5,31 +6,32 @@ public class Angestellter extends PersonVO {
     protected String personalNummer;
     protected KundeVO aktuellerKunde;
 
+    public Angestellter() {
+        this("", "");
+    }
+
+    public Angestellter(String nachname, String vorname) {
+        this(nachname, vorname, "", 0, "");
+    }
+
     public Angestellter(String nachname, String vorname, String strasse, int hausNr, String personalNummer) {
         super(nachname, vorname, strasse, hausNr);
         this.personalNummer = personalNummer;
     }
 
-    public Angestellter(String nachname, String vorname) {
-        super(nachname, vorname);
-    }
-
-    public Angestellter() {
-        super();
-    }
-
-    public String arbeitetfuerKunde(KundeVO kunde){
+    public String arbeitetfuerKunde(KundeVO kunde) {
         aktuellerKunde = kunde;
         return aktuellerKunde + arbeiten();
     }
 
-    public String arbeiten(){
+    public String arbeiten() {
         return "Dienstleistung aus Angestellter";
     }
 
     @Override
     public String toString() {
-        return super.toString() +"Urlaubstage: " + urlaubsTage +  "\nGehalt: " + gehalt + "Personalnummer: " + personalNummer + "\nAktueller Kunde: " + aktuellerKunde;
+        DecimalFormat df = new DecimalFormat("#.00");
+        return super.toString() + "\nUrlaubstage: " + urlaubsTage + "\nGehalt: " + df.format(gehalt) + "€\nPersonalnummer: " + personalNummer + "\nAktueller Kunde: " + aktuellerKunde;
     }
 
     @Override
