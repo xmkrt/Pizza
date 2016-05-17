@@ -40,6 +40,8 @@ public class Bestellung {
         return index;
     }
 
+
+    @Override
     public String toString() {
         String wk = "";
         for (PizzaVO position : warenkorb) {

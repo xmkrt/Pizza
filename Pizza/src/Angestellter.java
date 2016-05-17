@@ -30,8 +30,8 @@ public class Angestellter extends PersonVO {
 
     @Override
     public String toString() {
-        DecimalFormat df = new DecimalFormat("#.00");
-        return super.toString() + "\nUrlaubstage: " + urlaubsTage + "\nGehalt: " + df.format(gehalt) + "€\nPersonalnummer: " + personalNummer + "\nAktueller Kunde: " + aktuellerKunde;
+        DecimalFormat df = new DecimalFormat("#.00€");
+        return super.toString() + "\nUrlaubstage: " + urlaubsTage + "\nGehalt: " + df.format(gehalt) + "\nPersonalnummer: " + personalNummer + "\nAktueller Kunde: " + aktuellerKunde;
     }
 
     @Override

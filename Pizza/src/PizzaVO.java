@@ -79,8 +79,8 @@ public class PizzaVO {
     }
 
     public String toString() {
-        DecimalFormat df = new DecimalFormat("#.00");
-        return name + ", " + df.format(preis) + "€\n" + Arrays.toString(zutaten).replaceAll("[\\[\\]]", "");
+        DecimalFormat df = new DecimalFormat("#.00€");
+        return name + ", " + df.format(preis) + "\n" + Arrays.toString(zutaten).replaceAll("[\\[\\]]", "");
     }
 
 

@@ -1,77 +1,55 @@
 import java.awt.Color;
 
 public class Koch extends Angestellter {
-	private Color farbeSchuerze;
+    private Color farbeSchuerze;
 
-	public Koch() {
-		this(null, null, null);
-	}
-	
-	public Koch(String nachname, String vorname, Color farbeSchuerze) {
-		super(nachname, vorname);
-		this.farbeSchuerze = farbeSchuerze;
-	}
+    public Koch() {
+        this(null, null, null);
+    }
 
-	public void setNachname(String nachname) {
-		if (nachname != null)
-			this.nachname = nachname;
-	}
+    public Koch(String nachname, String vorname, Color farbeSchuerze) {
+        super(nachname, vorname);
+        this.farbeSchuerze = farbeSchuerze;
+    }
 
-    public String arbeiten(){
+    public String arbeiten() {
         return vorname + " " + nachname + "kocht!";
     }
 
-    public void erstelltSpeisekarte(){}
+    public void erstelltSpeisekarte() {
+    }
 
-	public String getNachname() {
-		return nachname;
-	}
+    public void setFarbeSchuerze(Color farbeSchuerze) {
+        if (farbeSchuerze != null)
+            this.farbeSchuerze = farbeSchuerze;
+    }
 
-	public void setVorname(String vorname) {
-		if (vorname !=  null)
-			this.vorname = vorname;
-	}
+    public Color getFarbeSchuerze() {
+        return farbeSchuerze;
+    }
 
-	public String getVorname() {
-		return vorname;
-	}
+    @Override
+    public String toString() {
+        return super.toString() + "\nSchürzenfarbe: " + farbeSchuerze;
+    }
 
-	public void setFarbeSchuerze(Color farbeSchuerze) {
-		if (farbeSchuerze != null)
-			this.farbeSchuerze = farbeSchuerze;
-	}
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + farbeSchuerze.hashCode();
+        return result;
+    }
 
-	public Color getFarbeSchuerze() {
-		return farbeSchuerze;
-	}
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
 
-	public String toString() {
-		return super.toString() + "\nSchürzenfarbe: " + farbeSchuerze;
-	}
+        Koch koch = (Koch) o;
 
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((farbeSchuerze == null) ? 0 : farbeSchuerze.hashCode());
-		result = prime * result + ((nachname == null) ? 0 : nachname.hashCode());
-		result = prime * result + ((vorname == null) ? 0 : vorname.hashCode());
-		return result;
-	}
+        return farbeSchuerze.equals(koch.farbeSchuerze);
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Koch check;
-		check = (Koch) obj;
-		if (this.nachname.equals(check.getNachname()) && this.vorname.equals(check.getVorname())
-				&& this.farbeSchuerze.equals(check.getFarbeSchuerze()))
-			return true;
-		else
-			return false;
-	}
+    }
 }
+
