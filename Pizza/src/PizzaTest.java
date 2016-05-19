@@ -21,15 +21,15 @@ public class PizzaTest {
 
 
         String[] zutaten = {"Tomatensauce", "Käse", "Peperoni"};
-        PizzaVO meinePizza = new PizzaVO("Peperoni", zutaten, 8.5F);
+        PizzaVO meinePizza = new PizzaVO(0, "Peperoni", zutaten, 8.5F);
         PizzaVO test = (PizzaVO) meinePizza.clone();
         test.setZutaten(new String[]{"Tomatensauce", "Käse", "Champignons"});
 
         System.out.println(test);
         System.out.println(meinePizza);
 
-        PizzaVO Peperoni = new PizzaVO("Peperoni", zutaten, 8.5f);
-        PizzaVO Sucuk = new PizzaVO("Sucuk", new String[]{"Tomatensauce", "Käse", "Sucuk", "Zwiebeln"}, 9.0f);
+        PizzaVO Peperoni = new PizzaVO(1, "Peperoni", zutaten, 8.5f);
+        PizzaVO Sucuk = new PizzaVO(2, "Sucuk", new String[]{"Tomatensauce", "Käse", "Sucuk", "Zwiebeln"}, 9.0f);
 
         //System.out.println(einKunde);
 
@@ -49,7 +49,7 @@ public class PizzaTest {
 
         mitarbeiter[0] = new Lieferant("Swag", "Yolo","Horstplatz" ,58, "2");
         mitarbeiter[1] = new Koch("Hitchkoch", "Alfred", Color.BLACK);
-        mitarbeiter[2] = new Angestellter("Stellter", "Ange", "Dorfstraße", 66, "1");
+        mitarbeiter[2] = new Lieferant("Stellter", "Ange", "Dorfstraße", 66, "1");
 
         mitarbeiter[1].setStrasse("Vogelstraße");
         mitarbeiter[1].setHausNr(48);
@@ -64,7 +64,15 @@ public class PizzaTest {
         mitarbeiter[2].setUrlaubsTage(30);
 
         for (Angestellter o:mitarbeiter)
-            System.out.println(o.toString());;
+            System.out.println(o.toString());
+
+        DessertVO mjam = new DessertVO(0, "Schleck", 4.50f);
+        System.out.println(mjam.getPreis());
+
+        Speisekarte meineKarte = new Speisekarte();
+
+        System.out.println(meineKarte);
+
 
 	/*
     if (!meineBestellung.equals(nochEineBestellung))

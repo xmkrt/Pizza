@@ -43,12 +43,14 @@ public class Bestellung {
 
     @Override
     public String toString() {
-        String wk = "";
-        for (PizzaVO position : warenkorb) {
-            if (position != null)
-                wk += position + "\n";
+        StringBuilder wk = new StringBuilder();
+        for (GerichtVO position: warenkorb) {
+            if (position != null) {
+                wk.append(position);
+                wk.append("\n");
+            }
         }
-        if (wk == "")
+        if (wk == null )
             return "\nhat keine Bestellung";
 
         else {

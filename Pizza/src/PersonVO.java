@@ -1,5 +1,5 @@
 
-public class PersonVO {
+public abstract class PersonVO {
     protected String nachname;
     protected String vorname;
     protected String strasse;
@@ -23,7 +23,16 @@ public class PersonVO {
 
     @Override
     public String toString() {
-        return "\nName: " + vorname + " " + nachname + "\nStraße: " + strasse + " " + hausNr;
+        StringBuilder ausgabe = new StringBuilder();
+        ausgabe.append("\name");
+        ausgabe.append(vorname);
+        ausgabe.append(" ");
+        ausgabe.append(nachname);
+        ausgabe.append("\nStraße: ");
+        ausgabe.append(strasse);
+        ausgabe.append(" ");
+        ausgabe.append(hausNr);
+        return ausgabe.toString();
     }
 
     @Override

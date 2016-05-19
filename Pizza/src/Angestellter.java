@@ -1,6 +1,6 @@
 import java.text.DecimalFormat;
 
-public class Angestellter extends PersonVO {
+public abstract class Angestellter extends PersonVO {
     protected int urlaubsTage;
     protected float gehalt;
     protected String personalNummer;
@@ -31,7 +31,17 @@ public class Angestellter extends PersonVO {
     @Override
     public String toString() {
         DecimalFormat df = new DecimalFormat("#.00€");
-        return super.toString() + "\nUrlaubstage: " + urlaubsTage + "\nGehalt: " + df.format(gehalt) + "\nPersonalnummer: " + personalNummer + "\nAktueller Kunde: " + aktuellerKunde;
+        StringBuilder ausgabe = new StringBuilder();
+        ausgabe.append(super.toString());
+        ausgabe.append("\nUrlaubstage: ");
+        ausgabe.append(urlaubsTage);
+        ausgabe.append("\nGehalt: ");
+        ausgabe.append(df.format(gehalt));
+        ausgabe.append("\nPersonalnummer: ");
+        ausgabe.append(personalNummer);
+        ausgabe.append("\nAktueller Kunde: ");
+        ausgabe.append(aktuellerKunde);
+        return ausgabe.toString();
     }
 
     @Override

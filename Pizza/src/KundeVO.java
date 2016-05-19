@@ -111,13 +111,20 @@ public class KundeVO extends PersonVO {
 
     @Override
     public String toString() {
-        String ausgabe = "";
-        ausgabe += "ID: " + id + "\n" + super.toString() + "\n" + "Alter: " + berechneAlter();
+        StringBuilder ausgabe = new StringBuilder();
+        ausgabe.append("ID: ");
+        ausgabe.append(id);
+        ausgabe.append("\n");
+        ausgabe.append(super.toString());
+        ausgabe.append("\n");
+        ausgabe.append("Alter: ");
+        ausgabe.append(berechneAlter());
+
         if (!hasBestellung())
-            ausgabe += "\nkeine Bestellung vorhanden";
+            ausgabe.append("\nkeine Bestellung vorhanden");
         else
-            ausgabe += this.bestellung.toString();
-        return ausgabe;
+            ausgabe.append(this.bestellung.toString());
+        return ausgabe.toString();
     }
 
     public static int getNaechsteID() {
