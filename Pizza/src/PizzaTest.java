@@ -1,26 +1,19 @@
 import java.awt.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Random;
 
 public class PizzaTest {
 
     public static void main(String[] args) {
-        LocalDate geb = LocalDate.of(1985, 1, 16);
 
-        KundeVO einKunde = new KundeVO("Müller", "Gerd", "Sackgasse", 10, "männlich", geb, null);
-        KundeVO nocheinKunde = new KundeVO("Maier", "Sabine", "Holzweg", 5, "weiblich", geb, null);
-        if (einKunde.equals(nocheinKunde))
-            System.out.println("Kunde gleich");
-        else
-            System.out.println("Kunde unterschiedlich");
-        System.out.println(einKunde);
-        System.out.println(nocheinKunde);
+        KundeVO kunde1 = new KundeVO("Müller", "Gerd", "Sackgasse", 10, "männlich", LocalDate.of(1982, 4, 19), null);
+        KundeVO kunde2 = new KundeVO("Maier", "Sabine", "Holzweg", 5, "weiblich", LocalDate.of(1992, 3, 20), null);
 
-        Koch einKoch = new Koch("Dampf", "Voll", Color.BLACK);
-        System.out.println(einKoch.getVorname() + einKoch.getNachname());
+        System.out.println(kunde1);
+        System.out.println(kunde2);
 
-
-        String[] zutaten = {"Tomatensauce", "Käse", "Peperoni"};
+        /*String[] zutaten = {"Tomatensauce", "Käse", "Peperoni"};
         PizzaVO meinePizza = new PizzaVO(0, "Peperoni", zutaten, 8.5F);
         PizzaVO test = (PizzaVO) meinePizza.clone();
         test.setZutaten(new String[]{"Tomatensauce", "Käse", "Champignons"});
@@ -31,23 +24,18 @@ public class PizzaTest {
         PizzaVO Peperoni = new PizzaVO(1, "Peperoni", zutaten, 8.5f);
         PizzaVO Sucuk = new PizzaVO(2, "Sucuk", new String[]{"Tomatensauce", "Käse", "Sucuk", "Zwiebeln"}, 9.0f);
 
-        //System.out.println(einKunde);
+        System.out.println(kunde1);*/
 
-        Bestellung meineBestellung = new Bestellung(LocalDateTime.now(), LocalDateTime.of(2016, 5, 6, 12, 30), einKunde);
-        Bestellung nochEineBestellung = new Bestellung(null, null, null);
-
-        meineBestellung.hinzufuegenGericht(Peperoni);
-        meineBestellung.hinzufuegenGericht(Sucuk);
-        einKunde.setBestellung(meineBestellung);
-        System.out.println(einKunde);
+        Bestellung bestell1 = new Bestellung(LocalDateTime.now(), kunde1);
+        Bestellung bestell2 = new Bestellung(LocalDateTime.now(), kunde2);
 
 
-        nochEineBestellung.setZeitstempelBestellung(LocalDateTime.of(2016, 4, 27, 12, 12));
-        nochEineBestellung.setZeitstempelAuslieferung(LocalDateTime.parse("2016-04-27T13:00"));
+        /*bestell2.setZeitstempelBestellung(LocalDateTime.of(2016, 4, 27, 12, 12));
+        bestell2.setZeitstempelAuslieferung(LocalDateTime.of(2016, 4, 27, 13, 00));*/
 
         Angestellter[] mitarbeiter = new Angestellter[3];
 
-        mitarbeiter[0] = new Lieferant("Swag", "Yolo","Horstplatz" ,58, "2");
+        mitarbeiter[0] = new Lieferant("Swag", "Yolo", "Horstplatz", 58, "2");
         mitarbeiter[1] = new Koch("Hitchkoch", "Alfred", Color.BLACK);
         mitarbeiter[2] = new Lieferant("Stellter", "Ange", "Dorfstraße", 66, "1");
 
@@ -63,23 +51,29 @@ public class PizzaTest {
         mitarbeiter[1].setUrlaubsTage(25);
         mitarbeiter[2].setUrlaubsTage(30);
 
-        for (Angestellter o:mitarbeiter)
-            System.out.println(o.toString());
+        Speisekarte speisekarte;
+        speisekarte = ((Koch) mitarbeiter[1]).erstelltSpeisekarte();
 
-        DessertVO mjam = new DessertVO(0, "Schleck", 4.50f);
-        System.out.println(mjam.getPreis());
+        System.out.println(speisekarte);
 
-        Speisekarte meineKarte = new Speisekarte();
+        Random zufall = new Random();
+        for (int i = 0; i < 4; i++) {
+            bestell1.hinzufuegenGericht(speisekarte.getGericht(zufall.nextInt(18)));
+            bestell2.hinzufuegenGericht(speisekarte.getGericht(zufall.nextInt(18)));
+        }
+        kunde1.setBestellung(bestell1);
+        kunde2.setBestellung(bestell2);
+        mitarbeiter[1].arbeitetfuerKunde(kunde1);
+        mitarbeiter[2].arbeitetfuerKunde(kunde2);
 
-        System.out.println(meineKarte);
+        System.out.println(bestell1 + "\n\n" + bestell2 + "\n\n");
 
+        kunde1.getBestellung().setStatus("aufgegeben");
+        kunde2.getBestellung().setStatus("fertig");
 
-	/*
-    if (!meineBestellung.equals(nochEineBestellung))
-	System.out.println("Die Bestellungen sind underschiedlich");
-	*/
-
-
+        for (Angestellter o : mitarbeiter) {
+            System.out.println(o);
+            System.out.println(o.arbeiten());
+        }
     }
-
 }

@@ -1,4 +1,5 @@
 import java.text.DecimalFormat;
+import java.time.format.DateTimeFormatter;
 
 public abstract class Angestellter extends PersonVO {
     protected int urlaubsTage;
@@ -21,12 +22,10 @@ public abstract class Angestellter extends PersonVO {
 
     public String arbeitetfuerKunde(KundeVO kunde) {
         aktuellerKunde = kunde;
-        return aktuellerKunde + arbeiten();
+        return arbeiten() + aktuellerKunde;
     }
 
-    public String arbeiten() {
-        return "Dienstleistung aus Angestellter";
-    }
+    public abstract String arbeiten();
 
     @Override
     public String toString() {
@@ -39,8 +38,25 @@ public abstract class Angestellter extends PersonVO {
         ausgabe.append(df.format(gehalt));
         ausgabe.append("\nPersonalnummer: ");
         ausgabe.append(personalNummer);
-        ausgabe.append("\nAktueller Kunde: ");
-        ausgabe.append(aktuellerKunde);
+        ausgabe.append("\narbeitet für ID: ");
+        if (aktuellerKunde != null) {
+            ausgabe.append(aktuellerKunde.getId());
+            ausgabe.append("\nName: ");
+            ausgabe.append(aktuellerKunde.getVorname());
+            ausgabe.append(" ");
+            ausgabe.append(aktuellerKunde.getNachname());
+            ausgabe.append("\n");
+            ausgabe.append(aktuellerKunde.getStrasse());
+            ausgabe.append(" ");
+            ausgabe.append(aktuellerKunde.getHausNr());
+            ausgabe.append("\nAlter: ");
+            ausgabe.append(aktuellerKunde.berechneAlter());
+            if (aktuellerKunde.getBestellung() != null) {
+                ausgabe.append("\nBestellung vom: ");
+                ausgabe.append(aktuellerKunde.getBestellung().getZeitstempelBestellung().format(DateTimeFormatter.ofPattern("dd.MM.yyyy hh:mm")));
+            }
+        }
+
         return ausgabe.toString();
     }
 

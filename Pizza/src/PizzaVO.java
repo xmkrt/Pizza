@@ -1,6 +1,3 @@
-import java.text.DecimalFormat;
-import java.util.Arrays;
-
 public class PizzaVO extends GerichtVO {
 
     private int groesse;
@@ -9,7 +6,7 @@ public class PizzaVO extends GerichtVO {
         this(0, "", null, 0.0F);
     }
 
-    public PizzaVO(int nummer,String name, String[] zutaten, float preis) {
+    public PizzaVO(int nummer, String name, String[] zutaten, float preis) {
         this(nummer, name, zutaten, preis, 0);
     }
 
@@ -62,9 +59,9 @@ public class PizzaVO extends GerichtVO {
         ausgabe.append("Pizza ");
         ausgabe.append(name);
         if (groesse == 1)
-            ausgabe.append("  normal");
+            ausgabe.append(" normal");
         if (groesse == 2)
-            ausgabe.append("  grande");
+            ausgabe.append(" grande");
 
         return ausgabe.toString();
     }

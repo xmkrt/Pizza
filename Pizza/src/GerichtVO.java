@@ -22,7 +22,7 @@ public abstract class GerichtVO {
         this.preis = preis;
     }
 
-  /*  @Override
+   /*  @Override
     public Object clone() {
         GerichtVO neuesGericht = new GerichtVO(this.nummer, this.name, this.zutaten, this.preis);
         return neuesGericht;
@@ -63,10 +63,10 @@ public abstract class GerichtVO {
         DecimalFormat df = new DecimalFormat("#.00€");
         StringBuilder ausgabe = new StringBuilder();
         ausgabe.append(name);
+        ausgabe.append("\nPreis: ");
         ausgabe.append(df.format(preis));
         ausgabe.append("\n");
-        //entfernt die Klammern bei der Ausgabe des Array
-        ausgabe.append(Arrays.toString(zutaten).replaceAll("[\\[\\]]", ""));
+        ausgabe.append(toStringZutaten());
         return ausgabe.toString();
     }
 

@@ -33,10 +33,9 @@ public class KundeVO extends PersonVO {
     public int hashCode() {
         final int hashMultiplier = 47;
         int hc = 1;
+        hc = super.hashCode();
         hc = hashMultiplier * hc + ((geburtsdatum == null) ? 0 : geburtsdatum.hashCode());
         hc = hashMultiplier * hc + ((geschlecht == null) ? 0 : geschlecht.hashCode());
-        hc = hashMultiplier * hc + ((nachname == null) ? 0 : nachname.hashCode());
-        hc = hashMultiplier * hc + ((vorname == null) ? 0 : vorname.hashCode());
         return hc;
     }
 
@@ -122,8 +121,10 @@ public class KundeVO extends PersonVO {
 
         if (!hasBestellung())
             ausgabe.append("\nkeine Bestellung vorhanden");
-        else
-            ausgabe.append(this.bestellung.toString());
+        else {
+            ausgabe.append("\nBestellung vorhanden\nBestellung vom ");
+            ausgabe.append(bestellung.getZeitstempelBestellung().format(DateTimeFormatter.ofPattern("dd.MM.yyyy hh:mm")));
+        }
         return ausgabe.toString();
     }
 

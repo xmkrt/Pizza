@@ -1,3 +1,5 @@
+import java.time.format.DateTimeFormatter;
+import java.util.Random;
 
 public class Lieferant extends Angestellter {
 
@@ -15,7 +17,18 @@ public class Lieferant extends Angestellter {
 
     @Override
     public String arbeiten() {
-        return vorname + " " + nachname + "liefert aus";
+        Random zufall = new Random();
+        if (aktuellerKunde == null)
+            return "Dienstleistung von Lieferant " + personalNummer + ": Keine Bestellung vorhanden.";
+        if (aktuellerKunde.getBestellung().getStatus() != "fertig")
+            return "Dienstleistung von Lieferant " + personalNummer + ": Keine Bestellung zum Abarbeiten vorhanden.";
+        else {
+            aktuellerKunde.getBestellung().setStatus("ausgeliefert");
+            int z = zufall.nextInt(60);
+            aktuellerKunde.getBestellung().setZeitstempelAuslieferung(aktuellerKunde.getBestellung().getZeitstempelBestellung().plusMinutes(z));
+            return "Fahre zu Kunde " + aktuellerKunde.getNachname() + "\nFahrtzeit: " + z + " Minuten\nDienstleistung vom Lieferant " + personalNummer + ": Bestellung fertig um "
+                    + (aktuellerKunde.getBestellung().getZeitstempelBestellung().plusMinutes(z).format(DateTimeFormatter.ofPattern("dd.MM.yyyy hh:mm"))) + "Uhr";
+        }
     }
 
     @Override

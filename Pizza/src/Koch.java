@@ -1,4 +1,4 @@
-import java.awt.Color;
+import java.awt.*;
 
 public class Koch extends Angestellter {
     private Color farbeSchuerze;
@@ -13,10 +13,18 @@ public class Koch extends Angestellter {
     }
 
     public String arbeiten() {
-        return vorname + " " + nachname + "kocht!";
+        if (aktuellerKunde == null)
+            return "Dienstleistung vom Koch " + personalNummer + ": Keine Bestellung vorhanden.";
+        if (aktuellerKunde.getBestellung().getStatus() != "aufgegeben")
+            return "Dienstleistung vom Koch " + personalNummer + ": Keine Bestellung zum Abarbeiten vorhanden.";
+        else {
+            aktuellerKunde.getBestellung().setStatus("aufgegeben");
+            return "Dienstleistung vom Koch " + personalNummer + ": Bestellung fertig";
+        }
     }
 
-    public void erstelltSpeisekarte() {
+    public Speisekarte erstelltSpeisekarte() {
+        return new Speisekarte();
     }
 
     public void setFarbeSchuerze(Color farbeSchuerze) {

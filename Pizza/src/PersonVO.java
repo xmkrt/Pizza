@@ -24,7 +24,7 @@ public abstract class PersonVO {
     @Override
     public String toString() {
         StringBuilder ausgabe = new StringBuilder();
-        ausgabe.append("\name");
+        ausgabe.append("\n");
         ausgabe.append(vorname);
         ausgabe.append(" ");
         ausgabe.append(nachname);

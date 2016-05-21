@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -8,22 +9,26 @@ public class Bestellung {
     private LocalDateTime zeitstempelBestellung;
     private LocalDateTime zeitstempelAuslieferung;
     private int index;
-    private PizzaVO[] warenkorb;
+    private GerichtVO[] warenkorb;
     private KundeVO kunde;
+    private String status;
 
     public Bestellung() {
-        this(null, null, null);
+        this(null, null);
     }
 
-    public Bestellung(LocalDateTime bestellung, LocalDateTime auslieferung, KundeVO kunde) {
+    public Bestellung(LocalDateTime bestellung, KundeVO kunde) {
+        this.kunde = kunde;
         setZeitstempelBestellung(bestellung);
-        setZeitstempelAuslieferung(auslieferung);
-        setKunde(kunde);
         index = 0;
-        warenkorb = new PizzaVO[MAX_GERICHTE];
+        warenkorb = new GerichtVO[MAX_GERICHTE];
     }
 
-    public void hinzufuegenGericht(PizzaVO gericht) {
+    public static int getMaxGerichte() {
+        return MAX_GERICHTE;
+    }
+
+    public void hinzufuegenGericht(GerichtVO gericht) {
         if (index < MAX_GERICHTE && gericht != null)
             warenkorb[index++] = gericht;
     }
@@ -32,7 +37,7 @@ public class Bestellung {
         warenkorb[--index] = null;
     }
 
-    public PizzaVO getGericht(int index) {
+    public GerichtVO getGericht(int index) {
         return warenkorb[index];
     }
 
@@ -40,23 +45,50 @@ public class Bestellung {
         return index;
     }
 
+    public float berechneGesamtpreis() {
+        float gesamtpreis = 0;
+        for (GerichtVO position : warenkorb) {
+            if (position != null) {
+                gesamtpreis += position.getPreis();
+            }
+        }
+        return gesamtpreis;
+    }
 
     @Override
     public String toString() {
         StringBuilder wk = new StringBuilder();
-        for (GerichtVO position: warenkorb) {
+        DecimalFormat df = new DecimalFormat("#.00€");
+        wk.append("\nBestellung vom ");
+        wk.append(zeitstempelBestellung.format(DateTimeFormatter.ofPattern("dd.MM.yyyy hh:mm")));
+        wk.append("\n");
+
+        for (GerichtVO position : warenkorb) {
             if (position != null) {
-                wk.append(position);
+                wk.append(position.getGerichtNummer());
+                wk.append(" - ");
+                wk.append(position.getGerichtName());
+                if (position.getZutaten() != null) {
+                    wk.append("\n");
+                    wk.append(position.toStringZutaten());
+                }
+                wk.append("\nPreis: ");
+                wk.append(df.format(position.getPreis()));
                 wk.append("\n");
             }
         }
-        if (wk == null )
+        wk.append("\nGesamtpreis: ");
+        wk.append(df.format(berechneGesamtpreis()));
+        if (wk == null)
             return "\nhat keine Bestellung";
 
         else {
-            return "\nBestellung vom " + zeitstempelBestellung.format(DateTimeFormatter.ofPattern("dd.MMM.yyyy hh:ss"))
-                    + " mit Lieferung am "
-                    + zeitstempelAuslieferung.format(DateTimeFormatter.ofPattern("dd.MMM.yyyy.hh.ss")) + "\n" + wk;
+            if (zeitstempelAuslieferung != null) {
+                wk.append(" mit Lieferung am ");
+                wk.append(zeitstempelAuslieferung.format(DateTimeFormatter.ofPattern("dd.MM.yyyy hh:mm")));
+            }
+            wk.append("\n");
+            return wk.toString();
         }
     }
 
@@ -117,15 +149,19 @@ public class Bestellung {
         return index;
     }
 
-    public static int getMaxGerichte() {
-        return MAX_GERICHTE;
-    }
-
     public KundeVO getKunde() {
         return kunde;
     }
 
     public void setKunde(KundeVO kunde) {
         this.kunde = kunde;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
