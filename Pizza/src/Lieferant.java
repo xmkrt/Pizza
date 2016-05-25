@@ -27,7 +27,7 @@ public class Lieferant extends Angestellter {
             int z = zufall.nextInt(60);
             aktuellerKunde.getBestellung().setZeitstempelAuslieferung(aktuellerKunde.getBestellung().getZeitstempelBestellung().plusMinutes(z));
             return "Fahre zu Kunde " + aktuellerKunde.getNachname() + "\nFahrtzeit: " + z + " Minuten\nDienstleistung vom Lieferant " + personalNummer + ": Bestellung fertig um "
-                    + (aktuellerKunde.getBestellung().getZeitstempelBestellung().plusMinutes(z).format(DateTimeFormatter.ofPattern("dd.MM.yyyy hh:mm"))) + "Uhr";
+                    + (aktuellerKunde.getBestellung().getZeitstempelBestellung().plusMinutes(z).format(DateTimeFormatter.ofPattern("dd.MM.yyyy hh:mm"))) + " Uhr";
         }
     }
 
@@ -35,4 +35,5 @@ public class Lieferant extends Angestellter {
     public String toString() {
         return super.toString();
     }
+
 }

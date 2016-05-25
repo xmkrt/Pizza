@@ -31,11 +31,11 @@ public class KundeVO extends PersonVO {
 
     @Override
     public int hashCode() {
-        final int hashMultiplier = 47;
-        int hc = 1;
-        hc = super.hashCode();
-        hc = hashMultiplier * hc + ((geburtsdatum == null) ? 0 : geburtsdatum.hashCode());
-        hc = hashMultiplier * hc + ((geschlecht == null) ? 0 : geschlecht.hashCode());
+        int hc = super.hashCode();
+        hc = 31 * hc + id;
+        hc = 31 * hc + (geschlecht != null ? geschlecht.hashCode() : 0);
+        hc = 31 * hc + (geburtsdatum != null ? geburtsdatum.hashCode() : 0);
+        hc = 31 * hc + (bestellung != null ? bestellung.hashCode() : 0);
         return hc;
     }
 
@@ -86,7 +86,7 @@ public class KundeVO extends PersonVO {
 
     private String getGeburtsdatumStr() {
         if (geburtsdatum != null)
-            return geburtsdatum.format(DateTimeFormatter.ofPattern("dd.MMM.yyyy"));
+            return geburtsdatum.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
         else
             return "";
     }

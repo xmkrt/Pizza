@@ -8,11 +8,11 @@ public abstract class Angestellter extends PersonVO {
     protected KundeVO aktuellerKunde;
 
     public Angestellter() {
-        this("", "");
+        this(null, null);
     }
 
     public Angestellter(String nachname, String vorname) {
-        this(nachname, vorname, "", 0, "");
+        this(nachname, vorname, null, 0, null);
     }
 
     public Angestellter(String nachname, String vorname, String strasse, int hausNr, String personalNummer) {

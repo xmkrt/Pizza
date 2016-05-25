@@ -3,7 +3,7 @@ public class PizzaVO extends GerichtVO {
     private int groesse;
 
     public PizzaVO() {
-        this(0, "", null, 0.0F);
+        this(0, null, null, 0.0f);
     }
 
     public PizzaVO(int nummer, String name, String[] zutaten, float preis) {

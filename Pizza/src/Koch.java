@@ -8,7 +8,11 @@ public class Koch extends Angestellter {
     }
 
     public Koch(String nachname, String vorname, Color farbeSchuerze) {
-        super(nachname, vorname);
+        this(nachname, vorname, null, 0, null, farbeSchuerze);
+    }
+
+    public Koch(String nachname, String vorname, String strasse, int hausNr, String personalNummer, Color farbeSchuerze) {
+        super(nachname, vorname, strasse, hausNr, personalNummer);
         this.farbeSchuerze = farbeSchuerze;
     }
 

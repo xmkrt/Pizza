@@ -8,7 +8,7 @@ public abstract class GerichtVO {
     protected float preis;
 
     public GerichtVO() {
-        this(0, "", null, 0.0f);
+        this(0, null, null, 0.0f);
     }
 
     public GerichtVO(int nummer, String name, float preis) {
@@ -27,6 +27,7 @@ public abstract class GerichtVO {
         GerichtVO neuesGericht = new GerichtVO(this.nummer, this.name, this.zutaten, this.preis);
         return neuesGericht;
     }*/
+
 
     public int getNummer() {
         return nummer;

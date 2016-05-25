@@ -62,7 +62,7 @@ public class Speisekarte {
             }
         } while (i < speisen.length && speisen[i] instanceof PizzaVO);
 
-        ausgabe.append("\n\nPrima Spezial Mudelgerichte:\n4 Spaghetti\n5 Tortellini\n6 Gnocchi\n");
+        ausgabe.append("\n\nPrima Spezial Nudelgerichte:\n4 Spaghetti\n5 Tortellini\n6 Gnocchi\n");
 
         do {
             ausgabe.append(" ");

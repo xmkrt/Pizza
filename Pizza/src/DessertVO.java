@@ -2,7 +2,7 @@
 public class DessertVO extends GerichtVO{
 
     public DessertVO() {
-        this(0, "", 0.0f);
+        this(0, null, 0.0f);
     }
 
     public DessertVO(int nummer, String name, float preis) {

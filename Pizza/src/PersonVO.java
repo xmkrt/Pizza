@@ -6,7 +6,7 @@ public abstract class PersonVO {
     protected int hausNr;
 
     public PersonVO() {
-        this("", "", "", 0);
+        this(null, null, null, 0);
     }
 
     public PersonVO(String nachname, String vorname) {

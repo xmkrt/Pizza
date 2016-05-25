@@ -3,7 +3,7 @@ public class PastaVO extends GerichtVO{
     private int pastaSorte;
 
     public PastaVO() {
-        this(0, "", null, 0.0f, 0);
+        this(0, null, null, 0.0f, 0);
     }
 
     public PastaVO(int nummer, String name, String[] zutaten, float preis, int pastaSorte) {
@@ -33,6 +33,11 @@ public class PastaVO extends GerichtVO{
                 break;
         }
         return ausgabe.toString();
+    }
+
+    public Object clone() {
+        PastaVO neuePasta = new PastaVO(this.nummer, this.name, this.zutaten, this.preis, this.pastaSorte);
+        return neuePasta;
     }
 
     public int getPastaSorte() {
