@@ -27,8 +27,8 @@ public class Koch extends Angestellter {
         }
     }
 
-    public Speisekarte erstelltSpeisekarte() {
-        return new Speisekarte();
+    public SpeiseKarte erstelltSpeisekarte() {
+        return new SpeiseKarte();
     }
 
     public void setFarbeSchuerze(Color farbeSchuerze) {

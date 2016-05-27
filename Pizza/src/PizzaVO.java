@@ -85,14 +85,6 @@ public class PizzaVO extends GerichtVO {
             this.preis = preis;
     }
 
-    public String[] getZutaten() {
-        return zutaten;
-    }
-
-    public void setZutaten(String[] zutaten) {
-        this.zutaten = zutaten;
-    }
-
     public String toString() {
         return super.toString() + " " + groesse;
     }

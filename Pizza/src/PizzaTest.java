@@ -51,7 +51,7 @@ public class PizzaTest {
         mitarbeiter[1].setUrlaubsTage(25);
         mitarbeiter[2].setUrlaubsTage(30);
 
-        Speisekarte speisekarte;
+        SpeiseKarte speisekarte;
         speisekarte = ((Koch) mitarbeiter[1]).erstelltSpeisekarte();
 
         System.out.println(speisekarte);
@@ -68,7 +68,6 @@ public class PizzaTest {
 
         System.out.println(bestell1 + "\n\n" + bestell2 + "\n\n");
 
-        kunde1.getBestellung().setStatus("aufgegeben");
         kunde2.getBestellung().setStatus("fertig");
 
         for (Angestellter o : mitarbeiter) {

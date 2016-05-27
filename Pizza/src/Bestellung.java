@@ -21,6 +21,7 @@ public class Bestellung {
         this.kunde = kunde;
         setZeitstempelBestellung(bestellung);
         index = 0;
+        status = "aufgegeben";
         warenkorb = new GerichtVO[MAX_GERICHTE];
     }
 
@@ -45,7 +46,7 @@ public class Bestellung {
         return index;
     }
 
-    public float berechneGesamtpreis() {
+    public float berechneGesamtPreis() {
         float gesamtpreis = 0;
         for (GerichtVO position : warenkorb) {
             if (position != null) {
@@ -78,7 +79,7 @@ public class Bestellung {
             }
         }
         wk.append("\nGesamtpreis: ");
-        wk.append(df.format(berechneGesamtpreis()));
+        wk.append(df.format(berechneGesamtPreis()));
         if (wk == null)
             return "\nhat keine Bestellung";
 
