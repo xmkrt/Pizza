@@ -18,7 +18,7 @@ public class Lieferant extends Angestellter {
     @Override
     public String arbeiten() {
         Random zufall = new Random();
-        if (aktuellerKunde == null)
+        if (aktuellerKunde == null || aktuellerKunde.getBestellung() == null)
             return "Dienstleistung von Lieferant " + personalNummer + ": Keine Bestellung vorhanden.";
         if (aktuellerKunde.getBestellung().getStatus() != "fertig")
             return "Dienstleistung von Lieferant " + personalNummer + ": Keine Bestellung zum Abarbeiten vorhanden.";
