@@ -59,9 +59,9 @@ public class PizzaVO extends GerichtVO {
         ausgabe.append("Pizza ");
         ausgabe.append(name);
         if (groesse == 1)
-            ausgabe.append(" normal");
+            ausgabe.append(" Normal");
         if (groesse == 2)
-            ausgabe.append(" grande");
+            ausgabe.append(" Grande");
 
         return ausgabe.toString();
     }

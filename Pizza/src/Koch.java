@@ -11,18 +11,22 @@ public class Koch extends Angestellter {
         this(nachname, vorname, null, 0, null, farbeSchuerze);
     }
 
+    public Koch(String nachname, String vorname, String strasse, int hausNr, String personalNummer) {
+        this(nachname, vorname, strasse, hausNr, personalNummer, Color.BLACK);
+    }
+
     public Koch(String nachname, String vorname, String strasse, int hausNr, String personalNummer, Color farbeSchuerze) {
         super(nachname, vorname, strasse, hausNr, personalNummer);
         this.farbeSchuerze = farbeSchuerze;
     }
 
     public String arbeiten() {
-        if (aktuellerKunde == null)
+        if (aktuellerKunde == null || aktuellerKunde.getBestellung() == null)
             return "Dienstleistung vom Koch " + personalNummer + ": Keine Bestellung vorhanden.";
         if (aktuellerKunde.getBestellung().getStatus() != "aufgegeben")
             return "Dienstleistung vom Koch " + personalNummer + ": Keine Bestellung zum Abarbeiten vorhanden.";
         else {
-            aktuellerKunde.getBestellung().setStatus("aufgegeben");
+            aktuellerKunde.getBestellung().setStatus("fertig");
             return "Dienstleistung vom Koch " + personalNummer + ": Bestellung fertig";
         }
     }

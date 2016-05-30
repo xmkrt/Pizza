@@ -1,10 +1,10 @@
 import java.text.DecimalFormat;
 
-public class Speisekarte {
+public class SpeiseKarte {
     private static final int ANZ_GERICHTE = 18;
     private GerichtVO[] speisen;
 
-    public Speisekarte() {
+    public SpeiseKarte() {
         initSpeisekarte();
     }
 

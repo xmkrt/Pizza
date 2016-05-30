@@ -20,7 +20,7 @@ public abstract class Angestellter extends PersonVO {
         this.personalNummer = personalNummer;
     }
 
-    public String arbeitetfuerKunde(KundeVO kunde) {
+    public String arbeitetFuerKunde(KundeVO kunde) {
         aktuellerKunde = kunde;
         return arbeiten() + aktuellerKunde;
     }

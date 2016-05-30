@@ -63,8 +63,8 @@ public class PizzaTest {
         }
         kunde1.setBestellung(bestell1);
         kunde2.setBestellung(bestell2);
-        mitarbeiter[1].arbeitetfuerKunde(kunde1);
-        mitarbeiter[2].arbeitetfuerKunde(kunde2);
+        mitarbeiter[1].arbeitetFuerKunde(kunde1);
+        mitarbeiter[2].arbeitetFuerKunde(kunde2);
 
         System.out.println(bestell1 + "\n\n" + bestell2 + "\n\n");
 

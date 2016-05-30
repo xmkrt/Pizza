@@ -13,6 +13,10 @@ public class Bestellung {
     private KundeVO kunde;
     private String status;
 
+    public static int getMAX_GERICHTE() {
+        return MAX_GERICHTE;
+    }
+
     public Bestellung() {
         this(null, null);
     }
