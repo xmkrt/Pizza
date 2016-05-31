@@ -74,5 +74,20 @@ public class PizzaTest {
             System.out.println(o);
             System.out.println(o.arbeiten());
         }
+
+        //Testat 2
+        System.out.println("-----------------------------------------------------------\n\n");
+        Lieferant lieferant1 = new Lieferant("Fa", "Li");
+        Fahrer lieferant2 = new Lieferant("Ra", "Fa");
+        KundeVO kunde = new KundeVO("Ru", "Gu", "Sackgasse", 10, "männlich", LocalDate.of(1982, 4, 19), null);
+        Bestellung bestell = new Bestellung(LocalDateTime.now(), kunde);
+
+        kunde.setBestellung(bestell);
+        bestell.setStatus("fertig");
+
+        System.out.println(lieferant1.arbeitetFuerKunde(kunde));
+        System.out.println(((Lieferant) lieferant2).arbeitetFuerKunde(kunde));
+
+
     }
 }

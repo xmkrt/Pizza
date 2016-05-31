@@ -1,7 +1,7 @@
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
-public class Lieferant extends Angestellter {
+public class Lieferant extends Angestellter implements Fahrer {
 
     public Lieferant() {
         this(null, null);
@@ -17,14 +17,15 @@ public class Lieferant extends Angestellter {
 
     @Override
     public String arbeiten() {
-        Random zufall = new Random();
+        //    Random zufall = new Random();
         if (aktuellerKunde == null || aktuellerKunde.getBestellung() == null)
             return "Dienstleistung von Lieferant " + personalNummer + ": Keine Bestellung vorhanden.";
         if (aktuellerKunde.getBestellung().getStatus() != "fertig")
             return "Dienstleistung von Lieferant " + personalNummer + ": Keine Bestellung zum Abarbeiten vorhanden.";
         else {
             aktuellerKunde.getBestellung().setStatus("ausgeliefert");
-            int z = zufall.nextInt(60);
+            //    int z = zufall.nextInt(60);
+            int z = fahreFahrzeug();
             aktuellerKunde.getBestellung().setZeitstempelAuslieferung(aktuellerKunde.getBestellung().getZeitstempelBestellung().plusMinutes(z));
             return "Fahre zu Kunde " + aktuellerKunde.getNachname() + "\nFahrtzeit: " + z + " Minuten\nDienstleistung vom Lieferant " + personalNummer + ": Bestellung fertig um "
                     + (aktuellerKunde.getBestellung().getZeitstempelBestellung().plusMinutes(z).format(DateTimeFormatter.ofPattern("dd.MM.yyyy hh:mm"))) + " Uhr";
@@ -36,4 +37,9 @@ public class Lieferant extends Angestellter {
         return super.toString();
     }
 
+    @Override
+    public int fahreFahrzeug() {
+        Random zufall = new Random();
+        return zufall.nextInt(MAX_FAHRZEIT);
+    }
 }

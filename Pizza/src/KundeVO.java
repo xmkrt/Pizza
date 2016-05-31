@@ -111,9 +111,8 @@ public class KundeVO extends PersonVO {
     @Override
     public String toString() {
         StringBuilder ausgabe = new StringBuilder();
-        ausgabe.append("ID: ");
+        ausgabe.append("\nID: ");
         ausgabe.append(id);
-        ausgabe.append("\n");
         ausgabe.append(super.toString());
         ausgabe.append("\n");
         ausgabe.append("Alter: ");
