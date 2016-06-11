@@ -3,7 +3,7 @@ package de.thb.fim.pizzaPronto.datenobjekte;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 
-public abstract class GerichtVO {
+public abstract class GerichtVO implements Cloneable {
     protected int nummer;
     protected String name;
     protected String[] zutaten;
@@ -24,12 +24,10 @@ public abstract class GerichtVO {
         this.preis = preis;
     }
 
-   /*  @Override
-    public Object clone() {
-        de.thb.fim.pizzaPronto.datenobjekte.GerichtVO neuesGericht = new de.thb.fim.pizzaPronto.datenobjekte.GerichtVO(this.nummer, this.name, this.zutaten, this.preis);
-        return neuesGericht;
-    }*/
-
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 
     public int getNummer() {
         return nummer;

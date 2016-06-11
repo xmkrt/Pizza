@@ -1,5 +1,7 @@
 package de.thb.fim.pizzaPronto.datenobjekte;
 
+import de.thb.fim.pizzaPronto.datenobjekte.exceptions.KundeKeinGeburtsdatumException;
+import de.thb.fim.pizzaPronto.datenobjekte.exceptions.KundeZuJungException;
 import de.thb.fim.pizzaPronto.logik.Bestellung;
 
 import java.time.LocalDate;
@@ -13,19 +15,19 @@ public class KundeVO extends PersonVO {
     private LocalDate geburtsdatum;
     private Bestellung bestellung;
 
-    public KundeVO() {
+/*    public KundeVO() {
         this(null, null, null, 0, null, null, null);
-    }
+    }*/
 
-    public KundeVO(String nachname, String vorname) {
+    public KundeVO(String nachname, String vorname) throws KundeZuJungException, KundeKeinGeburtsdatumException {
         this(nachname, vorname, null, 0, null, null, null);
     }
 
-    public KundeVO(String nachname, String vorname, Geschlecht geschlecht) {
+    public KundeVO(String nachname, String vorname, Geschlecht geschlecht) throws KundeKeinGeburtsdatumException, KundeZuJungException {
         this(nachname, vorname, null, 0, geschlecht, null, null);
     }
 
-    public KundeVO(String nachname, String vorname, String strasse, int hausNr, Geschlecht geschlecht, LocalDate geburtsdatum, Bestellung bestellung) {
+    public KundeVO(String nachname, String vorname, String strasse, int hausNr, Geschlecht geschlecht, LocalDate geburtsdatum, Bestellung bestellung) throws KundeZuJungException, KundeKeinGeburtsdatumException {
         super(nachname, vorname, strasse, hausNr);
         id = naechsteID++;
         this.geschlecht = geschlecht;
@@ -68,11 +70,11 @@ public class KundeVO extends PersonVO {
         this.bestellung = bestellung;
     }
 
-    public void setGeburtsdatum(LocalDate geburtsdatum) {
+    public void setGeburtsdatum(LocalDate geburtsdatum) throws KundeKeinGeburtsdatumException, KundeZuJungException {
         this.geburtsdatum = geburtsdatum;
         short alter = this.berechneAlter();
         if (alter < 18)
-            this.geburtsdatum = null;
+            throw new KundeZuJungException("Kunde zu jung");
     }
 
     public LocalDate getGeburtsdatum() {
@@ -84,31 +86,22 @@ public class KundeVO extends PersonVO {
     }
 
     public void setGeschlecht(Geschlecht geschlecht) {
-            this.geschlecht = geschlecht;
+        this.geschlecht = geschlecht;
     }
 
-    private String getGeburtsdatumStr() {
-        if (geburtsdatum != null)
+    private String getGeburtsdatumStr() throws KundeKeinGeburtsdatumException {
             return geburtsdatum.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-        else
-            return "";
     }
 
     public int getId() {
         return id;
     }
 
-    public short berechneAlter() {
-        if (this.getGeburtsdatum() != null) {
+    public short berechneAlter() throws KundeKeinGeburtsdatumException {
+
             Period zeit = Period.between(this.getGeburtsdatum(), LocalDate.now());
-            if (!zeit.isNegative())
-                if ((short) zeit.getYears() < 18)
-                    return -1;
-                else
-                    return (short) zeit.getYears();
-            return -1;
-        } else
-            return -1;
+        //if (!zeit.isNegative())
+        return (short) zeit.getYears();
     }
 
     @Override
@@ -119,7 +112,12 @@ public class KundeVO extends PersonVO {
         ausgabe.append(super.toString());
         ausgabe.append("\n");
         ausgabe.append("Alter: ");
-        ausgabe.append(berechneAlter());
+        try {
+            ausgabe.append(berechneAlter());
+        } catch (KundeKeinGeburtsdatumException e) {
+            System.out.println(e.getMessage());
+        }
+
 
         if (!hasBestellung())
             ausgabe.append("\nBestellung vorhanden");

@@ -1,6 +1,6 @@
 package de.thb.fim.pizzaPronto.datenobjekte;
 
-public class PastaVO extends GerichtVO{
+public class PastaVO extends GerichtVO implements Cloneable {
     private int pastaSorte;
 
     public PastaVO() {
@@ -36,9 +36,9 @@ public class PastaVO extends GerichtVO{
         return ausgabe.toString();
     }
 
-    public Object clone() {
-        PastaVO neuePasta = new PastaVO(this.nummer, this.name, this.zutaten, this.preis, this.pastaSorte);
-        return neuePasta;
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
     public int getPastaSorte() {

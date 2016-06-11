@@ -1,6 +1,6 @@
 package de.thb.fim.pizzaPronto.datenobjekte;
 
-public class PizzaVO extends GerichtVO {
+public class PizzaVO extends GerichtVO implements Cloneable {
 
     private int groesse;
 
@@ -18,9 +18,8 @@ public class PizzaVO extends GerichtVO {
     }
 
     @Override
-    public Object clone() {
-        PizzaVO clonePizza = new PizzaVO(this.nummer, this.name, this.zutaten, this.preis);
-        return clonePizza;
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
     @Override

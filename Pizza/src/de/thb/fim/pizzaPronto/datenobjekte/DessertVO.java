@@ -1,6 +1,6 @@
 package de.thb.fim.pizzaPronto.datenobjekte;
 
-public class DessertVO extends GerichtVO {
+public class DessertVO extends GerichtVO implements Cloneable {
 
     public DessertVO() {
         this(0, null, 0.0f);
@@ -18,5 +18,10 @@ public class DessertVO extends GerichtVO {
     @Override
     public String getGerichtName() {
         return name;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

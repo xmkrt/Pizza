@@ -2,6 +2,9 @@ package de.thb.fim.pizzaPronto.logik;
 
 import de.thb.fim.pizzaPronto.datenobjekte.KundeVO;
 import de.thb.fim.pizzaPronto.datenobjekte.PersonVO;
+import de.thb.fim.pizzaPronto.logik.exceptions.BestellungFalscherStatusException;
+import de.thb.fim.pizzaPronto.logik.exceptions.KeinKundeException;
+import de.thb.fim.pizzaPronto.logik.exceptions.KeineBestellungException;
 
 import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
@@ -25,12 +28,12 @@ public abstract class Angestellter extends PersonVO {
         this.personalNummer = personalNummer;
     }
 
-    public String arbeitetFuerKunde(KundeVO kunde) {
+    public String arbeitetFuerKunde(KundeVO kunde) throws KeinKundeException, KeineBestellungException, BestellungFalscherStatusException {
         aktuellerKunde = kunde;
         return arbeiten() + aktuellerKunde;
     }
 
-    public abstract String arbeiten();
+    public abstract String arbeiten() throws KeinKundeException, KeineBestellungException, BestellungFalscherStatusException;
 
     @Override
     public String toString() {
@@ -54,8 +57,6 @@ public abstract class Angestellter extends PersonVO {
             ausgabe.append(aktuellerKunde.getStrasse());
             ausgabe.append(" ");
             ausgabe.append(aktuellerKunde.getHausNr());
-            ausgabe.append("\nAlter: ");
-            ausgabe.append(aktuellerKunde.berechneAlter());
             if (aktuellerKunde.getBestellung() != null) {
                 ausgabe.append("\nBestellung vom: ");
                 ausgabe.append(aktuellerKunde.getBestellung().getZeitstempelBestellung().format(DateTimeFormatter.ofPattern("dd.MM.yyyy hh:mm")));
