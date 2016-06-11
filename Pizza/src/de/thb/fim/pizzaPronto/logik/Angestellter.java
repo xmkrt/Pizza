@@ -1,3 +1,8 @@
+package de.thb.fim.pizzaPronto.logik;
+
+import de.thb.fim.pizzaPronto.datenobjekte.KundeVO;
+import de.thb.fim.pizzaPronto.datenobjekte.PersonVO;
+
 import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
 
@@ -56,7 +61,6 @@ public abstract class Angestellter extends PersonVO {
                 ausgabe.append(aktuellerKunde.getBestellung().getZeitstempelBestellung().format(DateTimeFormatter.ofPattern("dd.MM.yyyy hh:mm")));
             }
         }
-
         return ausgabe.toString();
     }
 

@@ -1,3 +1,7 @@
+package de.thb.fim.pizzaPronto.logik;
+
+import de.thb.fim.pizzaPronto.datenobjekte.SpeiseKarte;
+
 import java.awt.*;
 
 public class Koch extends Angestellter {

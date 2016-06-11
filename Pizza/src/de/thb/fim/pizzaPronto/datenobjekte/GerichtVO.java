@@ -1,3 +1,5 @@
+package de.thb.fim.pizzaPronto.datenobjekte;
+
 import java.text.DecimalFormat;
 import java.util.Arrays;
 
@@ -24,7 +26,7 @@ public abstract class GerichtVO {
 
    /*  @Override
     public Object clone() {
-        GerichtVO neuesGericht = new GerichtVO(this.nummer, this.name, this.zutaten, this.preis);
+        de.thb.fim.pizzaPronto.datenobjekte.GerichtVO neuesGericht = new de.thb.fim.pizzaPronto.datenobjekte.GerichtVO(this.nummer, this.name, this.zutaten, this.preis);
         return neuesGericht;
     }*/
 

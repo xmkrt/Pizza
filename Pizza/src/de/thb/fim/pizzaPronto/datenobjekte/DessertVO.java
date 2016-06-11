@@ -1,5 +1,6 @@
+package de.thb.fim.pizzaPronto.datenobjekte;
 
-public class DessertVO extends GerichtVO{
+public class DessertVO extends GerichtVO {
 
     public DessertVO() {
         this(0, null, 0.0f);

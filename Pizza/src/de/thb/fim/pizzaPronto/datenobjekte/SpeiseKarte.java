@@ -1,3 +1,5 @@
+package de.thb.fim.pizzaPronto.datenobjekte;
+
 import java.text.DecimalFormat;
 
 public class SpeiseKarte {

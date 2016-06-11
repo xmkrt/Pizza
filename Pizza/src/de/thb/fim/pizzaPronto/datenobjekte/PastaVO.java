@@ -1,3 +1,4 @@
+package de.thb.fim.pizzaPronto.datenobjekte;
 
 public class PastaVO extends GerichtVO{
     private int pastaSorte;
@@ -19,7 +20,7 @@ public class PastaVO extends GerichtVO{
     @Override
     public String getGerichtName() {
         StringBuilder ausgabe = new StringBuilder();
-        ausgabe.append("Pasta ");
+        ausgabe.append(GerichtArt.PASTA.toString());
         ausgabe.append(name);
         switch (pastaSorte){
             case 4:
@@ -57,7 +58,6 @@ public class PastaVO extends GerichtVO{
         PastaVO pastaVO = (PastaVO) o;
 
         return pastaSorte == pastaVO.pastaSorte;
-
     }
 
     @Override
