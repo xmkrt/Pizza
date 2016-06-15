@@ -71,6 +71,8 @@ public class KundeVO extends PersonVO {
     }
 
     public void setGeburtsdatum(LocalDate geburtsdatum) throws KundeKeinGeburtsdatumException, KundeZuJungException {
+        if (geburtsdatum == null)
+            throw new KundeKeinGeburtsdatumException("Kunde hat kein Geburtsdatum");
         this.geburtsdatum = geburtsdatum;
         short alter = this.berechneAlter();
         if (alter < 18)
@@ -90,6 +92,9 @@ public class KundeVO extends PersonVO {
     }
 
     private String getGeburtsdatumStr() throws KundeKeinGeburtsdatumException {
+        if (geburtsdatum == null)
+            throw new KundeKeinGeburtsdatumException("Kunde hat keine Geburtsdatum");
+
             return geburtsdatum.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
 
@@ -98,8 +103,9 @@ public class KundeVO extends PersonVO {
     }
 
     public short berechneAlter() throws KundeKeinGeburtsdatumException {
-
-            Period zeit = Period.between(this.getGeburtsdatum(), LocalDate.now());
+        if (geburtsdatum == null)
+            throw new KundeKeinGeburtsdatumException("Kunde hat kein Geburtstag");
+        Period zeit = Period.between(geburtsdatum, LocalDate.now());
         //if (!zeit.isNegative())
         return (short) zeit.getYears();
     }
@@ -117,7 +123,6 @@ public class KundeVO extends PersonVO {
         } catch (KundeKeinGeburtsdatumException e) {
             System.out.println(e.getMessage());
         }
-
 
         if (!hasBestellung())
             ausgabe.append("\nBestellung vorhanden");

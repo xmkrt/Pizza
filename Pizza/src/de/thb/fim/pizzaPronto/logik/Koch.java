@@ -1,6 +1,9 @@
 package de.thb.fim.pizzaPronto.logik;
 
 import de.thb.fim.pizzaPronto.datenobjekte.SpeiseKarte;
+import de.thb.fim.pizzaPronto.logik.exceptions.BestellungFalscherStatusException;
+import de.thb.fim.pizzaPronto.logik.exceptions.KeinKundeException;
+import de.thb.fim.pizzaPronto.logik.exceptions.KeineBestellungException;
 
 import java.awt.*;
 
@@ -24,15 +27,17 @@ public class Koch extends Angestellter {
         this.farbeSchuerze = farbeSchuerze;
     }
 
-    public String arbeiten() {
-        if (aktuellerKunde == null || aktuellerKunde.getBestellung() == null)
-            return "Dienstleistung vom Koch " + personalNummer + ": Keine Bestellung vorhanden.";
+    public String arbeiten() throws KeineBestellungException, BestellungFalscherStatusException, KeinKundeException {
+        if (aktuellerKunde == null)
+            throw new KeinKundeException("Kein Kunde!");
+        if (getAktuellerKunde().getBestellung() == null)
+            throw new KeineBestellungException();
         if (aktuellerKunde.getBestellung().getStatus() != "aufgegeben")
-            return "Dienstleistung vom Koch " + personalNummer + ": Keine Bestellung zum Abarbeiten vorhanden.";
-        else {
-            aktuellerKunde.getBestellung().setStatus("fertig");
-            return "Dienstleistung vom Koch " + personalNummer + ": Bestellung fertig";
-        }
+            throw new BestellungFalscherStatusException("Bestellung hat den falschen Status!");
+
+        aktuellerKunde.getBestellung().setStatus("fertig");
+        return "Dienstleistung vom Koch " + personalNummer + ": Bestellung fertig";
+
     }
 
     public SpeiseKarte erstelltSpeisekarte() {

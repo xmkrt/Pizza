@@ -3,7 +3,12 @@ package de.thb.fim.pizzaPronto.controller;
 import de.thb.fim.pizzaPronto.datenobjekte.Geschlecht;
 import de.thb.fim.pizzaPronto.datenobjekte.KundeVO;
 import de.thb.fim.pizzaPronto.datenobjekte.SpeiseKarte;
+import de.thb.fim.pizzaPronto.datenobjekte.exceptions.KundeKeinGeburtsdatumException;
+import de.thb.fim.pizzaPronto.datenobjekte.exceptions.KundeZuJungException;
 import de.thb.fim.pizzaPronto.logik.*;
+import de.thb.fim.pizzaPronto.logik.exceptions.BestellungFalscherStatusException;
+import de.thb.fim.pizzaPronto.logik.exceptions.KeinKundeException;
+import de.thb.fim.pizzaPronto.logik.exceptions.KeineBestellungException;
 
 import java.awt.*;
 import java.time.LocalDate;
@@ -13,9 +18,17 @@ import java.util.Random;
 public class PizzaTest {
 
     public static void main(String[] args) {
+        KundeVO kunde1 = null;
+        KundeVO kunde2 = null;
+        try {
+            kunde1 = new KundeVO("Müller", "Gerd", "Sackgasse", 10, Geschlecht.M, LocalDate.of(1982, 4, 19), null);
+            kunde2 = new KundeVO("Maier", "Sabine", "Holzweg", 5, Geschlecht.W, LocalDate.of(1992, 3, 20), null);
+        } catch (KundeZuJungException e) {
+            System.err.println(e.getMessage());
+        } catch (KundeKeinGeburtsdatumException e) {
+            System.err.println(e.getMessage());
+        }
 
-        KundeVO kunde1 = new KundeVO("Müller", "Gerd", "Sackgasse", 10, Geschlecht.M, LocalDate.of(1982, 4, 19), null);
-        KundeVO kunde2 = new KundeVO("Maier", "Sabine", "Holzweg", 5, Geschlecht.W, LocalDate.of(1992, 3, 20), null);
 
         System.out.println(kunde1);
         System.out.println(kunde2);
@@ -70,8 +83,16 @@ public class PizzaTest {
         }
         kunde1.setBestellung(bestell1);
         kunde2.setBestellung(bestell2);
-        mitarbeiter[1].arbeitetFuerKunde(kunde1);
-        mitarbeiter[2].arbeitetFuerKunde(kunde2);
+        try {
+            mitarbeiter[1].arbeitetFuerKunde(kunde1);
+            mitarbeiter[2].arbeitetFuerKunde(kunde2);
+        } catch (KeinKundeException e) {
+            System.err.println(e.getMessage());
+        } catch (KeineBestellungException e) {
+            System.err.println(e.getMessage());
+        } catch (BestellungFalscherStatusException e) {
+            System.err.println(e.getMessage());
+        }
 
         System.out.println(bestell1 + "\n\n" + bestell2 + "\n\n");
 
@@ -79,7 +100,15 @@ public class PizzaTest {
 
         for (Angestellter o : mitarbeiter) {
             System.out.println(o);
-            System.out.println(o.arbeiten());
+            try {
+                System.out.println(o.arbeiten());
+            } catch (KeinKundeException e) {
+                System.err.println(e.getMessage());
+            } catch (KeineBestellungException e) {
+                System.err.println(e.getMessage());
+            } catch (BestellungFalscherStatusException e) {
+                System.err.println(e.getMessage());
+            }
         }
 
         //Testat
@@ -89,13 +118,30 @@ public class PizzaTest {
         Fahrer lieferant2 = new Lieferant("Gak", "Hugo");
         lieferant1.setPersonalNummer("L1");
         ((Lieferant) lieferant2).setPersonalNummer("L2");
-        KundeVO kunde = new KundeVO("Hungrig", "Herbert", "Horngasse", 43, Geschlecht.M, LocalDate.of(1977, 7, 23), null);
+
+        KundeVO kunde = null;
+        try {
+            kunde = new KundeVO("Hungrig", "Herbert", "Horngasse", 43, Geschlecht.M, LocalDate.of(1977, 7, 23), null);
+        } catch (KundeZuJungException e) {
+            System.err.println(e.getMessage());
+        } catch (KundeKeinGeburtsdatumException e) {
+            System.err.println(e.getMessage());
+        }
+
         Bestellung bestell = new Bestellung(LocalDateTime.now(), kunde);
 
         kunde.setBestellung(bestell);
         bestell.setStatus("fertig");
+        try {
+            System.out.println(lieferant1.arbeitetFuerKunde(kunde));
+            System.out.println(((Lieferant) lieferant2).arbeitetFuerKunde(kunde));
+        } catch (KeinKundeException e) {
+            System.err.println(e.getMessage());
+        } catch (KeineBestellungException e) {
+            System.err.println(e.getMessage());
+        } catch (BestellungFalscherStatusException e) {
+            System.err.println(e.getMessage());
+        }
 
-        System.out.println(lieferant1.arbeitetFuerKunde(kunde));
-        System.out.println(((Lieferant) lieferant2).arbeitetFuerKunde(kunde));
     }
 }
