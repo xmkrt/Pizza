@@ -3,13 +3,15 @@ package de.thb.fim.pizzaPronto.logik;
 import de.thb.fim.pizzaPronto.datenobjekte.GerichtVO;
 import de.thb.fim.pizzaPronto.datenobjekte.KundeVO;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
-public class Bestellung {
+public class Bestellung implements Serializable {
     private static final int MAX_GERICHTE = 10;
+    private static final long serialVersionUID = 1L;
 
     private LocalDateTime zeitstempelBestellung;
     private LocalDateTime zeitstempelAuslieferung;

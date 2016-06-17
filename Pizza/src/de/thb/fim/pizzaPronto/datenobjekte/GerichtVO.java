@@ -1,9 +1,11 @@
 package de.thb.fim.pizzaPronto.datenobjekte;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 
-public abstract class GerichtVO implements Cloneable {
+public abstract class GerichtVO implements Cloneable, Serializable {
+    private static final long serialVersionUID = 1L;
     protected int nummer;
     protected String name;
     protected String[] zutaten;

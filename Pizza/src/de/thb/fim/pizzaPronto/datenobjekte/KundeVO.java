@@ -95,7 +95,7 @@ public class KundeVO extends PersonVO {
         if (geburtsdatum == null)
             throw new KundeKeinGeburtsdatumException("Kunde hat keine Geburtsdatum");
 
-            return geburtsdatum.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+        return geburtsdatum.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
 
     public int getId() {

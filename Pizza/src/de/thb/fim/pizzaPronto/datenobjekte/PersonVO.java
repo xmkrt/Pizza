@@ -1,6 +1,9 @@
 package de.thb.fim.pizzaPronto.datenobjekte;
 
-public abstract class PersonVO {
+import java.io.Serializable;
+
+public abstract class PersonVO implements Serializable {
+    private static final long serialVersionUID = 1L;
     protected String nachname;
     protected String vorname;
     protected String strasse;

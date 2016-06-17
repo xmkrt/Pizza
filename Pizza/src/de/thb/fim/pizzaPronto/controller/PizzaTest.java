@@ -9,6 +9,7 @@ import de.thb.fim.pizzaPronto.logik.*;
 import de.thb.fim.pizzaPronto.logik.exceptions.BestellungFalscherStatusException;
 import de.thb.fim.pizzaPronto.logik.exceptions.KeinKundeException;
 import de.thb.fim.pizzaPronto.logik.exceptions.KeineBestellungException;
+import de.thb.fim.pizzaPronto.logik.io.Serializer;
 
 import java.awt.*;
 import java.time.LocalDate;
@@ -142,6 +143,14 @@ public class PizzaTest {
         } catch (BestellungFalscherStatusException e) {
             System.err.println(e.getMessage());
         }
+        System.out.println("-----------------");
+        Serializer serializer = new Serializer("bestellung.ser");
+        System.out.println(bestell);
+        serializer.serializeBestellung(bestell);
+
+        Bestellung beast = serializer.deserializeBestellung();
+
+        System.out.println(beast);
 
     }
 }

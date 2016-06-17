@@ -32,7 +32,6 @@ public abstract class Angestellter extends PersonVO {
         aktuellerKunde = kunde;
         if (aktuellerKunde == null)
             throw new KeinKundeException("kein Kunde");
-
         return arbeiten() + aktuellerKunde;
     }
 
