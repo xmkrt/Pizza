@@ -1,5 +1,7 @@
 package de.thb.fim.pizzaPronto.datenobjekte;
 
+import java.util.ArrayList;
+
 public class PizzaVO extends GerichtVO implements Cloneable {
 
     private int groesse;
@@ -8,11 +10,11 @@ public class PizzaVO extends GerichtVO implements Cloneable {
         this(0, null, null, 0.0f);
     }
 
-    public PizzaVO(int nummer, String name, String[] zutaten, float preis) {
+    public PizzaVO(int nummer, String name, ArrayList<String> zutaten, float preis) {
         this(nummer, name, zutaten, preis, 0);
     }
 
-    public PizzaVO(int nummer, String name, String[] zutaten, float preis, int groesse) {
+    public PizzaVO(int nummer, String name, ArrayList<String> zutaten, float preis, int groesse) {
         super(nummer, name, zutaten, preis);
         this.groesse = groesse;
     }

@@ -147,8 +147,10 @@ public class PizzaTest {
         Serializer serializer = new Serializer("bestellung.ser");
         System.out.println(bestell);
         serializer.serializeBestellung(bestell);
+        serializer.closeOutput();
 
         Bestellung beast = serializer.deserializeBestellung();
+        serializer.closeInput();
 
         System.out.println(beast);
 

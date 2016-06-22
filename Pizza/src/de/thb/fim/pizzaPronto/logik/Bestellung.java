@@ -7,22 +7,16 @@ import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
+import java.util.LinkedList;
 
 public class Bestellung implements Serializable {
-    private static final int MAX_GERICHTE = 10;
     private static final long serialVersionUID = 1L;
 
     private LocalDateTime zeitstempelBestellung;
     private LocalDateTime zeitstempelAuslieferung;
-    private int index;
-    private GerichtVO[] warenkorb;
+    private LinkedList<GerichtVO> warenkorb;
     private KundeVO kunde;
     private String status;
-
-    public static int getMAX_GERICHTE() {
-        return MAX_GERICHTE;
-    }
 
     public Bestellung() {
         this(null, null);
@@ -31,30 +25,24 @@ public class Bestellung implements Serializable {
     public Bestellung(LocalDateTime bestellung, KundeVO kunde) {
         this.kunde = kunde;
         setZeitstempelBestellung(bestellung);
-        index = 0;
         status = "aufgegeben";
-        warenkorb = new GerichtVO[MAX_GERICHTE];
-    }
-
-    public static int getMaxGerichte() {
-        return MAX_GERICHTE;
+        warenkorb = new LinkedList<GerichtVO>();
     }
 
     public void hinzufuegenGericht(GerichtVO gericht) {
-        if (index < MAX_GERICHTE && gericht != null)
-            warenkorb[index++] = gericht;
+        warenkorb.add(gericht);
     }
 
-    public void loescheLetztesGericht() {
-        warenkorb[--index] = null;
+    public void loescheGericht(GerichtVO gericht) {
+        warenkorb.remove(gericht);
     }
 
     public GerichtVO getGericht(int index) {
-        return warenkorb[index];
+        return warenkorb.get(index);
     }
 
     public int getAnzGerichte() {
-        return index;
+        return warenkorb.size();
     }
 
     public float berechneGesamtPreis() {
@@ -124,41 +112,27 @@ public class Bestellung implements Serializable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + index;
-        result = prime * result + Arrays.hashCode(warenkorb);
+        result = prime * result + warenkorb.hashCode();
         result = prime * result + ((zeitstempelAuslieferung == null) ? 0 : zeitstempelAuslieferung.hashCode());
         result = prime * result + ((zeitstempelBestellung == null) ? 0 : zeitstempelBestellung.hashCode());
         return result;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Bestellung other = (Bestellung) obj;
-        if (index != other.index)
-            return false;
-        if (!Arrays.equals(warenkorb, other.warenkorb))
-            return false;
-        if (zeitstempelAuslieferung == null) {
-            if (other.zeitstempelAuslieferung != null)
-                return false;
-        } else if (!zeitstempelAuslieferung.equals(other.zeitstempelAuslieferung))
-            return false;
-        if (zeitstempelBestellung == null) {
-            if (other.zeitstempelBestellung != null)
-                return false;
-        } else if (!zeitstempelBestellung.equals(other.zeitstempelBestellung))
-            return false;
-        return true;
-    }
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-    public int getIndex() {
-        return index;
+        Bestellung that = (Bestellung) o;
+
+        if (zeitstempelBestellung != null ? !zeitstempelBestellung.equals(that.zeitstempelBestellung) : that.zeitstempelBestellung != null)
+            return false;
+        if (zeitstempelAuslieferung != null ? !zeitstempelAuslieferung.equals(that.zeitstempelAuslieferung) : that.zeitstempelAuslieferung != null)
+            return false;
+        if (warenkorb != null ? !warenkorb.equals(that.warenkorb) : that.warenkorb != null) return false;
+        if (kunde != null ? !kunde.equals(that.kunde) : that.kunde != null) return false;
+        return status != null ? status.equals(that.status) : that.status == null;
+
     }
 
     public KundeVO getKunde() {

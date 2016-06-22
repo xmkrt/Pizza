@@ -1,44 +1,61 @@
 package de.thb.fim.pizzaPronto.datenobjekte;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 public class SpeiseKarte {
-    private static final int ANZ_GERICHTE = 18;
-    private GerichtVO[] speisen;
+    private ArrayList<GerichtVO> speisen;
 
     public SpeiseKarte() {
         initSpeisekarte();
     }
 
-    public static int getAnzGerichte() {
-        return ANZ_GERICHTE;
-    }
-
     private void initSpeisekarte() {
-        this.speisen = new GerichtVO[ANZ_GERICHTE];
-        speisen[0] = new PizzaVO(30, "Popeye", new String[]{"Schinken", "Spinat", "Champignon", "Ei"}, 7.00f, 1);
-        speisen[1] = new PizzaVO(30, "Popeye", new String[]{"Schinken", "Spinat", "Champignon", "Ei"}, 8.90f, 2);
-        speisen[2] = new PizzaVO(31, "Hawaii", new String[]{"Schinken", "Ananas", "Curry"}, 5.80f, 1);
-        speisen[3] = new PizzaVO(31, "Hawaii", new String[]{"Schinken", "Ananas", "Curry"}, 7.40f, 2);
-        speisen[4] = new PizzaVO(32, "Prima", new String[]{"Schinken", "Salami", "Zwiebeln", "Ei"}, 7.00f, 1);
-        speisen[5] = new PizzaVO(32, "Prima", new String[]{"Schinken", "Salami", "Zwiebeln", "Ei"}, 8.90f, 2);
-        speisen[6] = new PastaVO(11, "Napoli", new String[]{"Tomatensauce"}, 5.60f, 4);
-        speisen[7] = new PastaVO(11, "Napoli", new String[]{"Tomatensauce"}, 5.60f, 5);
-        speisen[8] = new PastaVO(11, "Napoli", new String[]{"Tomatensauce"}, 5.60f, 6);
-        speisen[9] = new PastaVO(12, "Bolognese", new String[]{"Hackfleischsauce"}, 6.40f, 4);
-        speisen[10] = new PastaVO(12, "Bolognese", new String[]{"Hackfleischsauce"}, 6.40f, 5);
-        speisen[11] = new PastaVO(12, "Bolognese", new String[]{"Hackfleischsauce"}, 6.40f, 6);
-        speisen[12] = new PastaVO(13, "alla Panna", new String[]{"Schinken", "Sahne"}, 6.40f, 4);
-        speisen[13] = new PastaVO(13, "alla Panna", new String[]{"Schinken", "Sahne"}, 6.40f, 5);
-        speisen[14] = new PastaVO(13, "alla Panna", new String[]{"Schinken", "Sahne"}, 6.40f, 6);
-        speisen[15] = new DessertVO(21, "Hausgemachter Obstsalat", 2.30f);
-        speisen[16] = new DessertVO(22, "Hausgemachte Pannacotta", 2.60f);
-        speisen[17] = new DessertVO(23, "Hausgemachtes Tiramisu", 2.80f);
+        speisen = new ArrayList<GerichtVO>();
+        ArrayList<String> zutaten = new ArrayList<String>();
+        zutaten.add("Schinken");
+        zutaten.add("Spinat");
+        zutaten.add("Champignon");
+        zutaten.add("Ei");
+        speisen.add(new PizzaVO(30, "Popeye", zutaten, 7.00f, 1));
+        speisen.add(new PizzaVO(30, "Popeye", zutaten, 8.90f, 2));
+        zutaten.clear();
+        zutaten.add("Schinken");
+        zutaten.add("Ananas");
+        zutaten.add("Curry");
+        speisen.add(new PizzaVO(31, "Hawaii", zutaten, 5.80f, 1));
+        speisen.add(new PizzaVO(31, "Hawaii", zutaten, 7.40f, 2));
+        zutaten.clear();
+        zutaten.add("Schinken");
+        zutaten.add("Salami");
+        zutaten.add("Zwiebeln");
+        zutaten.add("Ei");
+        speisen.add(new PizzaVO(32, "Prima", zutaten, 7.00f, 1));
+        speisen.add(new PizzaVO(32, "Prima", zutaten, 8.90f, 2));
+        zutaten.clear();
+        zutaten.add("Tomatensauce");
+        speisen.add(new PastaVO(11, "Napoli", zutaten, 5.60f, 4));
+        speisen.add(new PastaVO(11, "Napoli", zutaten, 5.60f, 5));
+        speisen.add(new PastaVO(11, "Napoli", zutaten, 5.60f, 6));
+        zutaten.clear();
+        zutaten.add("Hackfleischsauce");
+        speisen.add(new PastaVO(12, "Bolognese", zutaten, 6.40f, 4));
+        speisen.add(new PastaVO(12, "Bolognese", zutaten, 6.40f, 5));
+        speisen.add(new PastaVO(12, "Bolognese", zutaten, 6.40f, 6));
+        zutaten.clear();
+        zutaten.add("Schinken");
+        zutaten.add("Sahne");
+        speisen.add(new PastaVO(13, "alla Panna", zutaten, 6.40f, 4));
+        speisen.add(new PastaVO(13, "alla Panna", zutaten, 6.40f, 5));
+        speisen.add(new PastaVO(13, "alla Panna", zutaten, 6.40f, 6));
+        speisen.add(new DessertVO(21, "Hausgemachter Obstsalat", 2.30f));
+        speisen.add(new DessertVO(22, "Hausgemachte Pannacotta", 2.60f));
+        speisen.add(new DessertVO(23, "Hausgemachtes Tiramisu", 2.80f));
     }
 
     public GerichtVO getGericht(int n) {
-        if (n >= 0 && n <= ANZ_GERICHTE)
-            return speisen[n];
+        if (n >= 0 && n <= speisen.size())
+            return speisen.get(n);
         return null;
     }
 
@@ -52,37 +69,37 @@ public class SpeiseKarte {
         int i = 0;
 
         do {
-            ausgabe.append(speisen[i].getNummer() + "\t");
-            ausgabe.append(speisen[i].getName() + "\t\t\t");
-            ausgabe.append(speisen[i].toStringZutaten());
-            ausgabe.append("\n\tPreis:\t\t\t" + df.format(speisen[i].getPreis()));
+            ausgabe.append(speisen.get(i).getNummer() + "\t");
+            ausgabe.append(speisen.get(i).getName() + "\t\t\t");
+            ausgabe.append(speisen.get(i).toStringZutaten());
+            ausgabe.append("\n\tPreis:\t\t\t" + df.format(speisen.get(i).getPreis()));
             // Unterschiedliche Größe direkt anhängen
-            if (speisen[i].getNummer() == speisen[i + 1].getNummer()) {
-                ausgabe.append("\n\tPreis:\t\t\t" + df.format(speisen[i + 1].getPreis()));
+            if (speisen.get(i).getNummer() == speisen.get(i + 1).getNummer()) {
+                ausgabe.append("\n\tPreis:\t\t\t" + df.format(speisen.get(i + 1).getPreis()));
                 ausgabe.append("\n");
                 i += 2;
             }
-        } while (i < speisen.length && speisen[i] instanceof PizzaVO);
+        } while (i < speisen.size() && speisen.get(i) instanceof PizzaVO);
 
         ausgabe.append("\n\nPrima Spezial Nudelgerichte:\n4 Spaghetti\n5 Tortellini\n6 Gnocchi\n");
 
         do {
             ausgabe.append(" ");
-            ausgabe.append(speisen[i].getNummer() + "\t");
-            ausgabe.append(speisen[i].getName() + "\t\t");
-            ausgabe.append(speisen[i].toStringZutaten());
-            ausgabe.append("\n\tPreis:\t\t\t" + df.format(speisen[i].getPreis()) + "\n");
+            ausgabe.append(speisen.get(i).getNummer() + "\t");
+            ausgabe.append(speisen.get(i).getName() + "\t\t");
+            ausgabe.append(speisen.get(i).toStringZutaten());
+            ausgabe.append("\n\tPreis:\t\t\t" + df.format(speisen.get(i).getPreis()) + "\n");
             i += 3;
-        } while (i < speisen.length && speisen[i] instanceof PastaVO);
+        } while (i < speisen.size() && speisen.get(i) instanceof PastaVO);
 
         ausgabe.append("\n\nPrima Desserts\n");
 
         do {
-            ausgabe.append(speisen[i].getNummer() + "\t");
-            ausgabe.append(speisen[i].getName() + "\t");
-            ausgabe.append("\n\tPreis:\t\t\t" + df.format(speisen[i].getPreis()) + "\n");
+            ausgabe.append(speisen.get(i).getNummer() + "\t");
+            ausgabe.append(speisen.get(i).getName() + "\t");
+            ausgabe.append("\n\tPreis:\t\t\t" + df.format(speisen.get(i).getPreis()) + "\n");
             i += 1;
-        } while (i < speisen.length && speisen[i] instanceof DessertVO);
+        } while (i < speisen.size() && speisen.get(i) instanceof DessertVO);
 
         return ausgabe.toString();
     }

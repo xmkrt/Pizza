@@ -17,7 +17,7 @@ public class Serializer {
         try {
             os = new ObjectOutputStream(new FileOutputStream(datei));
             os.writeObject(bestellung);
-            closeOutput();
+            // closeOutput();
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
@@ -27,7 +27,7 @@ public class Serializer {
         try {
             is = new ObjectInputStream(new FileInputStream(datei));
             Bestellung bestellung = ((Bestellung) is.readObject());
-            closeInput();
+            // closeInput();
             return bestellung;
         } catch (IOException e) {
             System.err.println(e.getMessage());

@@ -2,13 +2,13 @@ package de.thb.fim.pizzaPronto.datenobjekte;
 
 import java.io.Serializable;
 import java.text.DecimalFormat;
-import java.util.Arrays;
+import java.util.ArrayList;
 
 public abstract class GerichtVO implements Cloneable, Serializable {
     private static final long serialVersionUID = 1L;
     protected int nummer;
     protected String name;
-    protected String[] zutaten;
+    protected ArrayList<String> zutaten;
     protected float preis;
 
     public GerichtVO() {
@@ -19,7 +19,7 @@ public abstract class GerichtVO implements Cloneable, Serializable {
         this(nummer, name, null, preis);
     }
 
-    public GerichtVO(int nummer, String name, String[] zutaten, float preis) {
+    public GerichtVO(int nummer, String name, ArrayList<String> zutaten, float preis) {
         this.nummer = nummer;
         this.name = name;
         this.zutaten = zutaten;
@@ -48,15 +48,16 @@ public abstract class GerichtVO implements Cloneable, Serializable {
 
         if (nummer != gerichtVO.nummer) return false;
         if (Float.compare(gerichtVO.preis, preis) != 0) return false;
-        if (!name.equals(gerichtVO.name)) return false;
-        return Arrays.equals(zutaten, gerichtVO.zutaten);
+        if (name != null ? !name.equals(gerichtVO.name) : gerichtVO.name != null) return false;
+        return zutaten != null ? zutaten.equals(gerichtVO.zutaten) : gerichtVO.zutaten == null;
+
     }
 
     @Override
     public int hashCode() {
         int result = nummer;
         result = 31 * result + name.hashCode();
-        result = 31 * result + Arrays.hashCode(zutaten);
+        result = 31 * result + zutaten.hashCode();
         result = 31 * result + (preis != +0.0f ? Float.floatToIntBits(preis) : 0);
         return result;
     }
@@ -75,7 +76,7 @@ public abstract class GerichtVO implements Cloneable, Serializable {
 
     public String toStringZutaten() {
         //entfernt die Klammern bei der Ausgabe des Array
-        return Arrays.toString(zutaten).replaceAll("[\\[\\]]", "");
+        return zutaten.toString().replaceAll("[\\[\\]]", "");
 
     }
 
@@ -93,11 +94,11 @@ public abstract class GerichtVO implements Cloneable, Serializable {
         this.name = name;
     }
 
-    public String[] getZutaten() {
+    public ArrayList<String> getZutaten() {
         return zutaten;
     }
 
-    public void setZutaten(String[] zutaten) {
+    public void setZutaten(ArrayList<String> zutaten) {
         this.zutaten = zutaten;
     }
 
