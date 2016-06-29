@@ -7,8 +7,10 @@ import de.thb.fim.pizzaPronto.logik.Bestellung;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
+import java.util.Objects;
 
-public class KundeVO extends PersonVO {
+public class KundeVO extends PersonVO implements Comparable<KundeVO>, Comparator<KundeVO>{
     private static int naechsteID = 0;
     private int id;
     private Geschlecht geschlecht;
@@ -137,4 +139,15 @@ public class KundeVO extends PersonVO {
         return naechsteID;
     }
 
+    @Override
+    public int compareTo(KundeVO k) {
+        if (this.nachname.equals(k.nachname))
+            return 0;
+        else return this.nachname.compareTo(k.nachname);
+    }
+
+    @Override
+    public int compare(KundeVO k1, KundeVO k2) {
+        return k1.geburtsdatum.compareTo(k2.geburtsdatum);
+    }
 }
