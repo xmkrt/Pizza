@@ -4,6 +4,7 @@ import de.thb.fim.pizzaPronto.logik.Bestellung;
 
 import java.io.*;
 
+
 public class Serializer {
     private ObjectOutputStream os;
     private ObjectInputStream is;
@@ -17,7 +18,6 @@ public class Serializer {
         try {
             os = new ObjectOutputStream(new FileOutputStream(datei));
             os.writeObject(bestellung);
-            // closeOutput();
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
@@ -27,7 +27,6 @@ public class Serializer {
         try {
             is = new ObjectInputStream(new FileInputStream(datei));
             Bestellung bestellung = ((Bestellung) is.readObject());
-            // closeInput();
             return bestellung;
         } catch (IOException e) {
             System.err.println(e.getMessage());

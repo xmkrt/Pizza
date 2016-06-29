@@ -1,8 +1,6 @@
 package de.thb.fim.pizzaPronto.controller;
 
-import de.thb.fim.pizzaPronto.datenobjekte.Geschlecht;
-import de.thb.fim.pizzaPronto.datenobjekte.KundeVO;
-import de.thb.fim.pizzaPronto.datenobjekte.SpeiseKarte;
+import de.thb.fim.pizzaPronto.datenobjekte.*;
 import de.thb.fim.pizzaPronto.datenobjekte.exceptions.KundeKeinGeburtsdatumException;
 import de.thb.fim.pizzaPronto.datenobjekte.exceptions.KundeZuJungException;
 import de.thb.fim.pizzaPronto.logik.*;
@@ -10,8 +8,10 @@ import de.thb.fim.pizzaPronto.logik.exceptions.BestellungFalscherStatusException
 import de.thb.fim.pizzaPronto.logik.exceptions.KeinKundeException;
 import de.thb.fim.pizzaPronto.logik.exceptions.KeineBestellungException;
 import de.thb.fim.pizzaPronto.logik.io.Serializer;
+import de.thb.fim.pizzaPronto.logik.io.SpeisekarteImporter;
 
 import java.awt.*;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Random;
@@ -153,6 +153,22 @@ public class PizzaTest {
         serializer.closeInput();
 
         System.out.println(beast);
+
+        System.out.println("-----------------");
+
+
+        SpeisekarteImporter i = new SpeisekarteImporter();
+
+        GerichtVO lop = new PizzaVO();
+
+        SpeiseKarte meineKarte = null;
+        try {
+            meineKarte = i.leseSpeisekarte("Pizza\\resources\\meineKleineSpeisekarte.txt");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(meineKarte);
+
 
     }
 }
