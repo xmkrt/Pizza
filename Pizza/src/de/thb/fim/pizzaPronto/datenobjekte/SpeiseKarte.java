@@ -82,9 +82,9 @@ public class SpeiseKarte {
             if (speisen.get(i).getNummer() == speisen.get(i + 1).getNummer()) {
                 ausgabe.append("\n\tPreis:\t\t\t" + df.format(speisen.get(i + 1).getPreis()));
                 ausgabe.append("\n");
-                i += 1;
+                i += 2;
             }
-            i += 1;
+           // i += 1;
         } while (i < speisen.size() && speisen.get(i) instanceof PizzaVO);
 
         ausgabe.append("\n\nPrima Spezial Nudelgerichte:\n4 Spaghetti\n5 Tortellini\n6 Gnocchi\n");
@@ -95,7 +95,7 @@ public class SpeiseKarte {
             ausgabe.append(speisen.get(i).getName() + "\t\t");
             ausgabe.append(speisen.get(i).toStringZutaten());
             ausgabe.append("\n\tPreis:\t\t\t" + df.format(speisen.get(i).getPreis()) + "\n");
-            i += 1;
+            i += 3;
         } while (i < speisen.size() && speisen.get(i) instanceof PastaVO);
 
         ausgabe.append("\n\nPrima Desserts\n");

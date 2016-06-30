@@ -16,7 +16,6 @@ public class SpeisekarteImporter {
     private String words[];
     private GerichtVO aktSpeise;
     private LinkedList<GerichtVO> speisen = new LinkedList<GerichtVO>();
-    private int nummer;
 
 
     public SpeisekarteImporter() {
@@ -51,13 +50,11 @@ public class SpeisekarteImporter {
             if (words[0].equals("speise.name")) {
                 aktSpeise.setName(words[1]);
             } else if (words[0].equals("speise.nr")) {
-                nummer = Integer.parseInt(words[1]);
+                aktSpeise.setNummer(Integer.parseInt(words[1]));
             } else if (words[0].equals("speise.sorte")) {
-                aktSpeise.setNummer(nummer + Integer.parseInt(words[1]));
+                ((PastaVO)aktSpeise).setPastaSorte((Integer.parseInt(words[1])));
             } else if (words[0].equals("speise.groesse")) {
-                aktSpeise.setNummer(nummer + Integer.parseInt(words[1]));
-            } else if (words[0].equals("speise.sorte")) {
-                aktSpeise.setNummer(nummer + Integer.parseInt(words[1]));
+                ((PizzaVO)aktSpeise).setGroesse(Integer.parseInt(words[1]));
             } else if (words[0].equals("speise.preis")) {
                 aktSpeise.setPreis(Float.parseFloat(words[1]));
             } else if (words[0].equals("speise.zutat")) {

@@ -14,6 +14,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.Random;
 
 public class PizzaTest {
@@ -156,10 +157,10 @@ public class PizzaTest {
 
         System.out.println("-----------------");
 
+        System.out.println("-----------------");
+
 
         SpeisekarteImporter i = new SpeisekarteImporter();
-
-        GerichtVO lop = new PizzaVO();
 
         SpeiseKarte meineKarte = null;
         try {
