@@ -76,8 +76,9 @@ public abstract class GerichtVO implements Cloneable, Serializable {
 
     public String toStringZutaten() {
         //entfernt die Klammern bei der Ausgabe des Array
+        if (zutaten == null)
+            return "";
         return zutaten.toString().replaceAll("[\\[\\]]", "");
-
     }
 
     public abstract int getGerichtNummer();
