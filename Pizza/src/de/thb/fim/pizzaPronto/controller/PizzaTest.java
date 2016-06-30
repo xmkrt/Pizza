@@ -163,7 +163,7 @@ public class PizzaTest {
 
         SpeiseKarte meineKarte = null;
         try {
-            meineKarte = i.leseSpeisekarte("Pizza\\resources\\meineKleineSpeisekarte.txt");
+            meineKarte = i.leseSpeisekarte(i.getResourcePath("meineKleineSpeisekarte.txt").getPath());
         } catch (IOException e) {
             e.printStackTrace();
         }

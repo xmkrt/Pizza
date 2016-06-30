@@ -6,6 +6,7 @@ import de.thb.fim.pizzaPronto.datenobjekte.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -20,6 +21,10 @@ public class SpeisekarteImporter {
 
     public SpeisekarteImporter() {
 
+    }
+
+    public URL getResourcePath(String name) {
+        return getClass().getClassLoader().getResource(name);
     }
 
     public SpeiseKarte leseSpeisekarte(String datei) throws IOException {
