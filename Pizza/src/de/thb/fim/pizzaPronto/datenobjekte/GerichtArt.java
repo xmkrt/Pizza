@@ -3,7 +3,7 @@ package de.thb.fim.pizzaPronto.datenobjekte;
 public enum GerichtArt {
     PIZZA("Pizza"), PASTA("Pasta");
 
-    String bezeichnung;
+    private final String bezeichnung;
 
     GerichtArt(String bezeichnung) {
         this.bezeichnung = bezeichnung;

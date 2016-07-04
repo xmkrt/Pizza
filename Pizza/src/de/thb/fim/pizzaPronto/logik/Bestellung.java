@@ -150,4 +150,8 @@ public class Bestellung implements Serializable {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public LinkedList<GerichtVO> getWarenkorb() {
+        return warenkorb;
+    }
 }

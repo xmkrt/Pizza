@@ -3,7 +3,7 @@ package de.thb.fim.pizzaPronto.datenobjekte;
 public enum Geschlecht {
     M(1), W(2), I(3), U(4);
 
-    int nummer;
+    private final int nummer;
 
     Geschlecht(int nummer) {
         this.nummer = nummer;

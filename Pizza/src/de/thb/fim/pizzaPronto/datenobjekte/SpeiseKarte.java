@@ -11,8 +11,16 @@ public class SpeiseKarte {
         initSpeisekarte();
     }
 
+    public SpeiseKarte(ArrayList<GerichtVO> speisen) {
+        this.speisen = new ArrayList<GerichtVO>(speisen);
+    }
+
     public SpeiseKarte(LinkedList<GerichtVO> speisen) {
         this.speisen = new ArrayList<GerichtVO>(speisen);
+    }
+
+    public int getAnzGerichte(){
+        return speisen.size();
     }
 
     private void initSpeisekarte() {

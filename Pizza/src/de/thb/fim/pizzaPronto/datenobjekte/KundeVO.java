@@ -29,6 +29,10 @@ public class KundeVO extends PersonVO implements Comparable<KundeVO>, Comparator
         this(nachname, vorname, null, 0, geschlecht, null, null);
     }
 
+    public KundeVO(String nachname, String vorname, Geschlecht geschlecht, LocalDate geburtsdatum) throws KundeKeinGeburtsdatumException, KundeZuJungException {
+        this(nachname, vorname, null, 0, geschlecht, geburtsdatum, null);
+    }
+
     public KundeVO(String nachname, String vorname, String strasse, int hausNr, Geschlecht geschlecht, LocalDate geburtsdatum, Bestellung bestellung) throws KundeZuJungException, KundeKeinGeburtsdatumException {
         super(nachname, vorname, strasse, hausNr);
         id = naechsteID++;
