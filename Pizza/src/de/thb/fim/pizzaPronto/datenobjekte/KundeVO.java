@@ -99,7 +99,7 @@ public class KundeVO extends PersonVO implements Comparable<KundeVO>, Comparator
 
     private String getGeburtsdatumStr() throws KundeKeinGeburtsdatumException {
         if (geburtsdatum == null)
-            throw new KundeKeinGeburtsdatumException("Kunde hat keine Geburtsdatum");
+            throw new KundeKeinGeburtsdatumException("Kunde hat kein Geburtsdatum");
 
         return geburtsdatum.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
